@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 public class Binary_Search
 {
@@ -117,15 +118,68 @@ public class Binary_Search
             ch[i] = temp;
         }
         ch[index - 1] = in_val;
-        try
-        {
             for (int i = 0; i <= ch.Length; i++)
+            {
+            if (ch != null)
             {
                 Console.WriteLine(ch[i]);
             }
-        } catch (IndexOutOfRangeException) {
-          
-            Console.WriteLine("out of bound");
+            }
+    }
+
+    public void Sort()
+    {
+        Console.WriteLine("Enter the length of an array");
+        int n= Convert.ToInt32(Console.ReadLine());
+        int[] a = new int[n];
+        Console.WriteLine("Enter the elements in array");
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = Convert.ToInt32(Console.ReadLine());
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for(int j=0;j<n-i-1;j++)
+            {
+                if(a[j]>a[j+1])
+                {
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
+        Console.WriteLine("After bubble sort elements in the array are:");
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write(a[i]);
+        }
+    }
+
+    public void Sort2()
+    {
+        Console.WriteLine("Enter the length of an array");
+        int n = Convert.ToInt32(Console.ReadLine());
+        char[] a = new char[n];
+        Console.WriteLine("Enter the String element");
+        String s = Console.ReadLine();
+        a = s.ToCharArray();
+        for (int i = 0; i < a.Length; i++)
+        {
+            for (int j = 0; j < a.Length- i - 1; j++)
+            {
+                if (a[j] > a[j + 1])
+                {
+                    char temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
+        Console.WriteLine("After bubble sort elements in the array are:");
+        for (int i = 0; i < a.Length; i++)
+        {
+            Console.Write(a[i]);
         }
     }
 }

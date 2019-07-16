@@ -59,6 +59,67 @@ namespace Program
                     Wind_Chill w = new Wind_Chill();
                     w.Print();
                     break;
+                case 13:
+                    Binary_Search b = new Binary_Search();
+                    b.Insert1();
+                    b.Insert2();
+                    b.Search1();
+                    b.Search2();
+                    b.Sort();
+                    b.Sort2();
+                    break;
+                case 14:
+                    Insertion_Sort i = new Insertion_Sort();
+                    i.Sorting();
+                    break;
+                case 15:
+                    Two_D_Array t = new Two_D_Array();
+                    t.Array();
+                    break;
+                case 16:
+                    Coupon_Number c = new Coupon_Number();
+                    c.Distinct_Coupon();
+                    break;
+                case 17:
+                    Tic_Tac_Toe tic = new Tic_Tac_Toe();
+                    tic.Play();
+                    break;
+                case 18:
+                    Console.WriteLine("Enter n");
+                    int n = Convert.ToInt32(Console.ReadLine());
+                    Prime_Num prime = new Prime_Num();
+                    prime.Check(n);
+                    break;
+                case 19:
+                    Gregorian_Calender.dayOfWeek();
+                    break;
+                case 20:
+                    Temperature temp = new Temperature();
+                    Console.WriteLine("Enter Celcius temperature");
+                    double cel = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Enter Fahrenheit temperature");
+                    double far = Convert.ToDouble(Console.ReadLine());
+                    temp.Celcious_To_Fahrenheit(cel);
+                    temp.Fahrenheit_To_Celcious(far);
+                    break;
+                case 21:
+                    Payment pay = new Payment();
+                    pay.MonthlyPayment();
+                    break;
+                case 22:
+                    Bubble_Sort bubble = new Bubble_Sort();
+                    bubble.Sort();
+                    break;
+                case 23:
+                    Vending_Machine v = new Vending_Machine();
+                    Console.WriteLine("Enter note");
+                    int note = Convert.ToInt32(Console.ReadLine());
+                    v.Notes(note);
+                    Console.WriteLine("Number of notes : " + v.retCount());
+                    break;
+                default:
+                    Console.WriteLine("Enter correct num");
+                    break;
             }   
         }
     }
