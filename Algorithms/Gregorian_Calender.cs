@@ -5,6 +5,9 @@ public class Gregorian_Calender
 	public static void dayOfWeek()
 	{
         Console.WriteLine("Enter Day");
+
+        //reading of input day,month,year from user
+
         int d = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter Month");
         int m = Convert.ToInt32(Console.ReadLine());
@@ -15,6 +18,8 @@ public class Gregorian_Calender
         int m0 = m + 12 * ((14 - m) / 12) - 2;
         int d0 = (d + x + 31 * m0 / 12) % 7;
         Console.WriteLine(d0);
+
+        //passing the parameter d0 as it is the output and acts as input for switch loop
         switch(d0)
         {
             case 0:
