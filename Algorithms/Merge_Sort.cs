@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Merge_Sort.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 
 public class Merge_Sort
 {

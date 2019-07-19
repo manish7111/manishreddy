@@ -1,29 +1,46 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Temperature.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Class name is Temperature where we can find the temperature conversions from celcius to fahrenheit and vice versa.
+/// </summary>
 public class Temperature
 {
-	public void Celcious_To_Fahrenheit(double c)
+    /// <summary>
+    /// Celciouses to fahrenheit.
+    /// </summary>
+    /// <param name="celcius">The c.</param>
+    public void Celcious_To_Fahrenheit(double celcius)
 	{
 
-        //formula to find fahrenheit temperature
-        double f = (c * 9 / 5) + 32;
-        Console.WriteLine(f);
+        ////Formula to find fahrenheit temperature
+        double fahrenheit = (celcius * 9 / 5) + 32;
+        Console.WriteLine(fahrenheit);
     }
-
-    public void Fahrenheit_To_Celcious(double f)
+    /// <summary>
+    /// Fahrenheits to celcious.
+    /// </summary>
+    /// <param name="fahrenheit">The fahrenheit.</param>
+    public void Fahrenheit_To_Celcious(double fahrenheit)
     {
-        //formula to find celcius temperature
-        double c = (f-32)*5/9;
-        Console.WriteLine(c);
+        ////Formula to find celcius temperature
+        double celcius = (fahrenheit - 32)*5/9;
+        Console.WriteLine(celcius);
     }
-
+    /// <summary>
+    /// Tests this instance.
+    /// </summary>
     public void Test()
     {
         Console.WriteLine("Enter Celcius temperature");
-        double cel = Convert.ToDouble(Console.ReadLine());
+        double celcius = Convert.ToDouble(Console.ReadLine());
         Console.WriteLine("Enter Fahrenheit temperature");
-        double far = Convert.ToDouble(Console.ReadLine());
-        this.Celcious_To_Fahrenheit(cel);
-        this.Fahrenheit_To_Celcious(far);
+        double fahrenheit = Convert.ToDouble(Console.ReadLine());
+        this.Celcious_To_Fahrenheit(celcius);
+        this.Fahrenheit_To_Celcious(fahrenheit);
     }
 }

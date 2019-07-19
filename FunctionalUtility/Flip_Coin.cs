@@ -1,28 +1,39 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Flip_Coin.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Created the class Flip_Coin where i added a method flip to find the number of flips of a coin and to find win%.
+/// </summary>
 public class Flip_Coin 
 {
-	public void Flip()
-	{
+    /// <summary>
+    /// Flip is the instance method created to find the number of flips and percentage of tail and head.
+    /// </summary>
+    public void Flip()
+    { 
         Console.WriteLine("Enter number of Flips");
 
-        //reading of number of flips from the user
-        double f = Convert.ToDouble(Console.ReadLine());
+        ////Reading of number of flips from the user
+        double flip = Convert.ToDouble(Console.ReadLine());
 
-        //Initially heads and tails are 0
+        ////Initially heads and tails are 0
         double tail = 0;                                        
         double head = 0;
 
-        // as asked we have to read the values randomly btw 0 and 1 we call random class
-        Random r = new Random();                                
+        ////As asked we have to read the values randomly btw 0 and 1 we call random class
+        Random random = new Random();                                
         
-        if (f>0)
+        if (flip>0)
         {
-            for (int i = 0; i < f; i++)
+            for (int i = 0; i < flip; i++)
             {
 
-                //calling of random function to read the values btw 0 and 1
-                double result = r.NextDouble();                   
+                ////Calling of random function to read the values btw 0 and 1
+                double result = random.NextDouble();                   
                 if (result < 0.5)                                 
                 {
                     tail++;
@@ -38,9 +49,9 @@ public class Flip_Coin
             Console.WriteLine("enter positive num");
         }
 
-        //calculating the percentage of heads and tails
-        double tail_per = (tail / f) * 100;                         
-        double head_per = (head / f) * 100;
+        ////Calculating the percentage of heads and tails
+        double tail_per = (tail / flip) * 100;                         
+        double head_per = (head / flip) * 100;
         Console.WriteLine("Percentage of tail is:" + tail_per);
         Console.WriteLine("Percentage of head is:" + head_per);
     }

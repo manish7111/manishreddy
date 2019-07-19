@@ -1,7 +1,18 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Vending_Machine.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Vending_Machine is a class where i have to find the number of notes are given as a change fro the amount. 
+/// </summary>
 public class Vending_Machine
 {
+    /// <summary>
+    /// Notes is the method where iam passing amount as a parameter to check the count and notes which can be given as a change.
+    /// </summary>
     static int count = 0;
     public void Notes(int amount)
 	{

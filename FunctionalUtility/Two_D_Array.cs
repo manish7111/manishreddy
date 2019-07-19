@@ -1,107 +1,118 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Two_D_Array.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Two_D_Array is a class where i defined integer array,double array,boolean array and printing the elements in it.
+/// </summary>
 public class Two_D_Array
 {
-	public void Array()
+    /// <summary>
+    /// Arrays this instance and prints the output using the switch case.
+    /// </summary>
+    public void Array()
 	{
         Console.WriteLine("Enter number of rows");
 
-        //reading number of rows from the user
-        int m = Convert.ToInt32(Console.ReadLine());    
+        ////Reading number of rows from the user
+        int row = Convert.ToInt32(Console.ReadLine());    
         Console.WriteLine("Enter number of columns");
 
-        //reading of number of columns from the user
-        int n = Convert.ToInt32(Console.ReadLine());
+        ////Reading of number of columns from the user
+        int column = Convert.ToInt32(Console.ReadLine());
 
-        //declaration of integer type array
-        int[,] intArray = new int[m, n];
+        ////Declaration of integer type array
+        int[,] intArray = new int[row, column];
 
-        //declaration of double type array
-        double[,] doubleArray = new double[m, n];
+        ////Declaration of double type array
+        double[,] doubleArray = new double[row, column];
 
-        //declaration of boolean type array
-        bool[,] booleanArray = new bool[m, n];          
+        ////Declaration of boolean type array
+        bool[,] booleanArray = new bool[row, column];          
         Console.WriteLine("1.Interger array \n2.Double Array \n3.Boolean array");
 
-        //read the input from user as which case u want to execute
+        ////Read the input from user as which case u want to execute
         int k = Convert.ToInt32(Console.ReadLine());
 
-        //switch case to execute code faster
+        ////Switch case to execute code faster
         switch (k)                                     
         {
             case 1:
                 Console.WriteLine("Enter integer array elements");
 
-                //nested for loop for reading values in the integer array
-                for (int i = 0; i < m; i++)           
+                ////Nested for loop for reading values in the integer array
+                for (int i = 0; i < row; i++)           
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         intArray[i, j] = Convert.ToInt32(Console.ReadLine());
                     }
                     Console.WriteLine();
                 }
 
-                //nested for loop for printing values of the integer array
-                for (int i = 0; i < m; i++)              
+                ////Nested for loop for printing values of the integer array
+                for (int i = 0; i < row; i++)              
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         Console.Write(intArray[i, j]);
                     }
                     Console.WriteLine();
                 }
-                //end of execution
+                ////End of execution
                 break;                                   
 
             case 2:
                 Console.WriteLine("Enter double array elements");
 
-                //nested for loop for reading values from user in the double array
-                for (int i = 0; i < m; i++)             
+                ////Nested for loop for reading values from user in the double array
+                for (int i = 0; i < row; i++)             
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         doubleArray[i, j] = Convert.ToDouble(Console.ReadLine());
                     }
                     Console.WriteLine();
                 }
 
-                //nested for loop for printing values of the double array
-                for (int i = 0; i < m; i++)              
+                ////Nested for loop for printing values of the double array
+                for (int i = 0; i < row; i++)              
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         Console.Write(doubleArray[i, j]);
                     }
                     Console.WriteLine();
                 }
-                //end of execution
+                ////End of execution
                 break;                                   
                 
             case 3:
                 Console.WriteLine("Enter boolean array elements");
 
-                //nested for loop for reading values in the boolean array
-                for (int i = 0; i < m; i++)            
+                ////Nested for loop for reading values in the boolean array
+                for (int i = 0; i < row; i++)            
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         booleanArray[i, j] = Convert.ToBoolean(Console.ReadLine());
                     }
                     Console.WriteLine();
                 }
 
-                //nested for loop for printing values present in the boolean array
-                for (int i = 0; i < m; i++)            
+                ////Nested for loop for printing values present in the boolean array
+                for (int i = 0; i < row; i++)            
                 {
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < column; j++)
                     {
                         Console.Write(booleanArray[i, j]);
                     }
                     Console.WriteLine();
                 }
-                //end of execution
+                ////End of execution
                 break;                                  
 
             default:

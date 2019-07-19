@@ -1,26 +1,37 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Gregorian_Calender.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Gregorian_Calender ia class where we find the day example as date of birth.
+/// </summary>
 public class Gregorian_Calender
 {
-	public static void dayOfWeek()
+    /// <summary>
+    /// Dayofweek is a method to find the day.
+    /// </summary>
+    public static void DayOfWeek()
 	{
         Console.WriteLine("Enter Day");
 
-        //reading of input day,month,year from user
+        ////Reading of input day,month,year from user
 
-        int d = Convert.ToInt32(Console.ReadLine());
+        int day = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter Month");
-        int m = Convert.ToInt32(Console.ReadLine());
+        int month = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter Year");
-        int y = Convert.ToInt32(Console.ReadLine());
-        int y0= y-(14-m)/12;
-        int x= y0+y0/4-y0/100+y0/400;
-        int m0 = m + 12 * ((14 - m) / 12) - 2;
-        int d0 = (d + x + 31 * m0 / 12) % 7;
-        Console.WriteLine(d0);
+        int year = Convert.ToInt32(Console.ReadLine());
+        int year0= year-(14-month)/12;
+        int x= year0 + year0/4-year0/100+year0/400;
+        int month0 = month + 12 * ((14 - month) / 12) - 2;
+        int day0 = (day + x + 31 * month0 / 12) % 7;
+        Console.WriteLine(day0);
 
-        //passing the parameter d0 as it is the output and acts as input for switch loop
-        switch(d0)
+        ////Passing the parameter d0 as it is the output and acts as input for switch loop
+        switch(day0)
         {
             case 0:
                 Console.WriteLine("sunday");
