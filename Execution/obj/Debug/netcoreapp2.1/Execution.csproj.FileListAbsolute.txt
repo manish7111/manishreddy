@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\Execution.deps.json
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\Execution.runtimeconfig.json
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\Execution.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\Execution.dll
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\Execution.pdb
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\DataStructures.dll
+C:\Users\Admin\source\repos\Execution\bin\Debug\netcoreapp2.1\DataStructures.pdb
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.csproj.CopyComplete
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.dll
+C:\Users\Admin\source\repos\Execution\obj\Debug\netcoreapp2.1\Execution.pdb
