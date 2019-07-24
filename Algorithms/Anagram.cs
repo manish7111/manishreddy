@@ -1,18 +1,38 @@
-﻿using System;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Anagram.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Manish Reddy"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
+/// <summary>
+/// Anagram is a class where i created a check method,to check whether the string is anagram or not.
+/// </summary>
 public class Anagram
 {
-	public void Check()                       //created a method
+    /// <summary>
+    /// Check is a method to check whether the two given strings are anagram or not.
+    /// </summary>
+    public void Check()                       
 	{
-        String s1 = Console.ReadLine();       //Reading of 2 strings 
-        String s2 = Console.ReadLine();
+        ////Reading of 1st strings 
+        Console.WriteLine("enter 1st string");
+        String string1 = Console.ReadLine();
+
+        Console.WriteLine("enter 2nd string");
+        ////Reading of 2 strings 
+        String string2 = Console.ReadLine();
         
-        if(s1.Length==s2.Length)              
+        if(string1.Length==string2.Length)              
         {
             int count = 0;
-            char[] ch1=s1.ToCharArray();        //converting string to array
-            char[] ch2 = s2.ToCharArray();
-            Array.Sort(ch1);                    //Sorting of array
+
+            ////converting string to array
+            char[] ch1=string1.ToCharArray();        
+            char[] ch2 = string2.ToCharArray();
+
+            ////Sorting of array`
+            Array.Sort(ch1);                  
             Console.WriteLine(ch1);
             Array.Sort(ch2);
             Console.WriteLine(ch2);
@@ -23,7 +43,7 @@ public class Anagram
                      count++;
                     }
             }
-            if(count==s1.Length)
+            if(count==string1.Length)
             {
                 Console.WriteLine("Anagram");
             }
