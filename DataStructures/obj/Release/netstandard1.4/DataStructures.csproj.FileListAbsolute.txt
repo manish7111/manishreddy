@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.AssemblyInfo.cs
+C:\Users\Admin\source\repos\DataStructures\bin\Release\netstandard1.4\DataStructures.deps.json
+C:\Users\Admin\source\repos\DataStructures\bin\Release\netstandard1.4\DataStructures.dll
+C:\Users\Admin\source\repos\DataStructures\bin\Release\netstandard1.4\DataStructures.pdb
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.dll
+C:\Users\Admin\source\repos\DataStructures\obj\Release\netstandard1.4\DataStructures.pdb
