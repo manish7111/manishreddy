@@ -1,0 +1,27 @@
+[
+  {
+    "stockName": "bridgeLabz",
+    "numberOfShare": 60,
+    "sharePrice": 20000.0
+  },
+  {
+    "stockName": "amazon",
+    "numberOfShare": 75,
+    "sharePrice": 22000.0
+  },
+  {
+    "stockName": "flipKart",
+    "numberOfShare": 45,
+    "sharePrice": 18500.0
+  },
+  {
+    "stockName": "IBM",
+    "numberOfShare": 50,
+    "sharePrice": 25000
+  },
+  {
+    "stockName": "greytHr",
+    "numberOfShare": 25,
+    "sharePrice": 16000
+  }
+]
