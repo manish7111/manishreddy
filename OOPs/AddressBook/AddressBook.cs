@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-public class AddressBook
+public class AddressBook:IAddressBook
 {
     public void Details(string file)
     {

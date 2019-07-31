@@ -13,7 +13,7 @@ using System.Collections.Generic;
 /// <summary>
 /// InventoryMain is a class where i defined the methods .
 /// </summary>
-public class InventoryMain
+public class InventoryMain:IInventory
 {
     /// <summary>
     /// The inventory class
