@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.AssemblyInfo.cs
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\OOPs\bin\Release\netstandard2.0\OOPs.deps.json
+C:\Users\Admin\source\repos\OOPs\bin\Release\netstandard2.0\OOPs.dll
+C:\Users\Admin\source\repos\OOPs\bin\Release\netstandard2.0\OOPs.pdb
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.dll
+C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard2.0\OOPs.pdb
