@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\Patterns.deps.json
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\Patterns.runtimeconfig.json
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\Patterns.runtimeconfig.dev.json
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\Patterns.dll
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\Patterns.pdb
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\DesignPatterns.dll
+C:\Users\Admin\source\repos\Patterns\bin\Debug\netcoreapp2.1\DesignPatterns.pdb
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.csproj.CopyComplete
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.dll
+C:\Users\Admin\source\repos\Patterns\obj\Debug\netcoreapp2.1\Patterns.pdb
