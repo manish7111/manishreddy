@@ -1,4 +1,0 @@
-C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard1.4\OOPs.csprojAssemblyReference.cache
-C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard1.4\OOPs.csproj.CoreCompileInputs.cache
-C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard1.4\OOPs.AssemblyInfoInputs.cache
-C:\Users\Admin\source\repos\OOPs\obj\Release\netstandard1.4\OOPs.AssemblyInfo.cs
