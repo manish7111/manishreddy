@@ -1,9 +1,0 @@
-C:\Users\Admin\source\repos\DesignPatterns\bin\Release\netstandard2.0\DesignPatterns.deps.json
-C:\Users\Admin\source\repos\DesignPatterns\bin\Release\netstandard2.0\DesignPatterns.dll
-C:\Users\Admin\source\repos\DesignPatterns\bin\Release\netstandard2.0\DesignPatterns.pdb
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.csprojAssemblyReference.cache
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.csproj.CoreCompileInputs.cache
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.AssemblyInfoInputs.cache
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.AssemblyInfo.cs
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.dll
-C:\Users\Admin\source\repos\DesignPatterns\obj\Release\netstandard2.0\DesignPatterns.pdb
