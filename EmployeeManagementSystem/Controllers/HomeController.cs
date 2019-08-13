@@ -2,7 +2,7 @@
 // <copyright file="HomeController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Raavi Ramcharan"/>
+// <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 
 using Employee_Management_System.Models;
@@ -29,6 +29,8 @@ namespace Employee_Management_System.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
+
+        EmployeeController employeeController = new EmployeeController();
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -50,46 +52,57 @@ namespace Employee_Management_System.Controllers
         /// Adds the employee.
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddEmployee(string name,string contact,string salary,string city)
+        [HttpGet]
+        public ActionResult AddEmployee()
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    Employees employee = new Employees();
-                    employee.Name = name;
-                    employee.ContactNumber = contact;
-                    employee.Salary = salary;
-                    employee.City = city;
-                    if (employeeRepos.AddEmployee(employee.Name,employee.ContactNumber,employee.Salary,employee.City))
-                    {
-                        ViewBag.Message = "Employee details added successfully";
-                    }
-                }
-
-                return View();
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
+        }
+        [HttpPost]
+        [ActionName("AddEmployee")]
+        public ActionResult Add(int id,string name, string contact, string salary, string city)
+        {
+            Employees employee = new Employees();
+            employee.EmpId = id;
+            employee.Name = name;
+            employee.ContactNumber = contact;
+            employee.Salary = salary;
+            employee.City = city;
+            bool v= employeeRepos.AddEmployee(employee.Name, employee.ContactNumber, employee.Salary, employee.City);
+            return View(employee);
         }
         /// <summary>
         /// Updates the employee.
         /// </summary>
         /// <returns></returns>
-        public ActionResult UpdateEmployee()
+        [HttpGet]
+        public ActionResult UpdateEmployee(int id,string name,string contact,string salary,string city)
         {
-            return View();
+            Employees employee = new Employees();
+            employee.EmpId = id;
+            employee.Name = name;
+            employee.ContactNumber = contact;
+            employee.Salary = salary;
+            employee.City = city;
+            return View(employee);
         }
         /// <summary>
         /// Deletes the employee.
         /// </summary>
         /// <returns></returns>
-        public ActionResult DeleteEmployee()
+        public ActionResult DeleteEmployee(int id)
         {
-
+            employeeController.Delete(id);
             return View();
         }
+        [HttpPost]
+        [ActionName("UpdateEmployee")]
+        public ActionResult Update(int id, string name, string contact, string salary, string city)
+        {
+            employeeController.Update(id, name, contact, salary, city);
+            Employees employees = new Employees();
+
+            return View(employees);
+        }
+       
     }
 }

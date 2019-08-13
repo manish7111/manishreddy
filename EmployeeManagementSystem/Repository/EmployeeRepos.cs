@@ -2,7 +2,7 @@
 // <copyright file="EmployeeRepos.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Raavi Ramcharan"/>
+// <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using Employee_Management_System.Models;
 using System;

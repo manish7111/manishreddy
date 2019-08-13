@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" onclick="location.href='@Url.Action("Home", "Update", new { id = Model.EmpId, name = Model.Name, contact = Model.ContactNumber, salary = Model.Salary, city = Model.City })'" class="btn btn-default" />
             </div>
         </div>
     </div>

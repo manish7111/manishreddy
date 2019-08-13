@@ -2,7 +2,7 @@
 // <copyright file="RouteConfig.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Raavi Ramcharan"/>
+// <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace Employee_Management_System
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));

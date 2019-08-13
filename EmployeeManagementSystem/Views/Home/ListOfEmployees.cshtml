@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Employee_Management_System.Models.Employees>
 
 <p>
-    @Html.ActionLink("Add New Employee", "AddEmployee")
+    @Html.ActionLink("Employee Details", " ListOfEmployees")
 </p>
 <table class="table">
     <tr>
@@ -23,6 +23,7 @@
         <th></th>
     </tr>
 
+
     @foreach (var item in Model)
     {
         <tr>
@@ -39,14 +40,16 @@
                 @Html.DisplayFor(modelItem => item.Salary)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
+                @Html.DisplayFor(modelItem => item.City)          
             </td>
             <td>
-                @Html.ActionLink("Update", "UpdateEmployee", new {/* id=item.PrimaryKey */ }) |
-
-                @Html.ActionLink("Delete", "DeleteEmployee", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Add New Employee", "AddEmployee", new { name = item.Name, contact = item.ContactNumber, salary = item.Salary, city = item.City }) |*@
+                @Html.ActionLink("Update", "UpdateEmployee", new { id = item.EmpId, name = item.Name, contact = item.ContactNumber, salary = item.Salary, city = item.City }) |
+                @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EmpId, name = item.Name, contact = item.ContactNumber, salary = item.Salary, city = item.City })
             </td>
         </tr>
+
+
     }
 
 </table>

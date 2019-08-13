@@ -2,7 +2,7 @@
 // <copyright file="RouteConfig.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Raavi Ramcharan"/>
+// <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using System.Web;
 using System.Web.Optimization;
