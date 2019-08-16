@@ -59,16 +59,15 @@ namespace Employee_Management_System.Controllers
         }
         [HttpPost]
         [ActionName("AddEmployee")]
-        public ActionResult Add(int id,string name, string contact, string salary, string city)
+        public ActionResult AddEmployee(string name, string ContactNumber, string salary, string city)
         {
             Employees employee = new Employees();
-            employee.EmpId = id;
             employee.Name = name;
-            employee.ContactNumber = contact;
+            employee.ContactNumber = ContactNumber;
             employee.Salary = salary;
             employee.City = city;
-            bool v= employeeRepos.AddEmployee(employee.Name, employee.ContactNumber, employee.Salary, employee.City);
-            return View(employee);
+            bool variable= employeeRepos.AddEmployee(employee.Name, employee.ContactNumber, employee.Salary, employee.City);
+             return Redirect("https://localhost:44318/home/login");
         }
         /// <summary>
         /// Updates the employee.
@@ -85,15 +84,6 @@ namespace Employee_Management_System.Controllers
             employee.City = city;
             return View(employee);
         }
-        /// <summary>
-        /// Deletes the employee.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult DeleteEmployee(int id)
-        {
-            employeeController.Delete(id);
-            return View();
-        }
         [HttpPost]
         [ActionName("UpdateEmployee")]
         public ActionResult Update(int id, string name, string contact, string salary, string city)
@@ -103,6 +93,43 @@ namespace Employee_Management_System.Controllers
 
             return View(employees);
         }
+        /// <summary>
+        /// Deletes the employee.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DeleteEmployee(string Name)
+        {
+            employeeController.Delete(Name);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Action Result Log
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ActionName("Login")]
+        public ActionResult Log(string username, string password)
+        {
+            if (employeeRepos.Login(username, password))
+            {
+                return Redirect("https://localhost:44318/home/list");
+                //return View(employees);
+            }
+            else
+                return View("Error");
+            
+        }
+        
+    
        
     }
 }

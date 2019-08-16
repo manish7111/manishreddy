@@ -31,14 +31,14 @@ namespace Employee_Management_System
 
             ////Mapping the routes with the controller and by default it will open the starting page.
             routes.MapRoute("Home/ListOfEmployees", "home/list", new { Controller = "Home", action = "ListOfEmployees", id = UrlParameter.Optional });
-
             routes.MapRoute("Home/AddEmployee", "home/add", new { Controller = "Home", action = "AddEmployee", id = UrlParameter.Optional });
             routes.MapRoute("Home/UpdateEmployee", "home/update", new { Controller = "Home", action = "UpdateEmployee", id = UrlParameter.Optional });
             routes.MapRoute("Home/DeleteEmployee", "home/delete", new { Controller = "Home", action = "DeleteEmployee", id = UrlParameter.Optional });
+            routes.MapRoute("Home/Login", "home/login", new { Controller = "Home", action = "Login", id = UrlParameter.Optional });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "AddEmployee", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

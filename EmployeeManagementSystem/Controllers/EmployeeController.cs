@@ -27,6 +27,7 @@ namespace Employee_Management_System.Controllers
         /// The employee repos
         /// </summary>
         private readonly EmployeeRepos employeeRepos = new EmployeeRepos();
+        Employees employee = new Employees();
 
         /// <summary>
         /// Gets this instance.
@@ -51,7 +52,11 @@ namespace Employee_Management_System.Controllers
         [HttpPost]
         public string Post(string name,string contact,string salary,string city)
         {
-            employeeRepos.AddEmployee(name, contact, salary, city);
+            employee.Name = name;
+            employee.ContactNumber = contact;
+            employee.Salary = salary;
+            employee.City = city;
+            employeeRepos.AddEmployee(employee.Name, employee.ContactNumber, employee.Salary, employee.City);
             return "Added successfully";
         }
 
@@ -79,10 +84,15 @@ namespace Employee_Management_System.Controllers
         /// <returns></returns>
         [Route("api/delete")]
         [HttpDelete]
-        public string Delete(int id)
+        public string Delete(string Name)
         {
-            employeeRepos.DeleteEmployee(id);
+            employeeRepos.DeleteEmployee(Name);
             return "Deleted Successfully";
+        }
+        public string Login(string name,string city)
+        {
+            employeeRepos.Login(name, city);
+            return "Login Successful";
         }
     }
 }

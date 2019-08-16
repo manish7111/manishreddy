@@ -2,7 +2,7 @@
 // <copyright file="Employees.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
-// <creator name="Raavi Ramcharan"/>
+// <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace Employee_Management_System.Models
         /// <value>
         /// The name.
         /// </value>
-        [Required(ErrorMessage = "First name is required.")]
+        [Required(ErrorMessage = "Name is required.")]
         public string Name
         {
             get;
@@ -76,6 +76,30 @@ namespace Employee_Management_System.Models
         /// </value>
         [Required(ErrorMessage = "City is required.")]
         public string City
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>
+        /// The username.
+        /// </value>
+        public string Username
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        /// <value>
+        /// The password.
+        /// </value>
+        [DataType(DataType.Password)]
+        public string Password
         {
             get;
             set;

@@ -22,7 +22,7 @@ namespace Employee_Management_System.Repository
     /// <summary>
     /// EmployeeRepos is a class where i declared the functionalities.
     /// </summary>
-    public class EmployeeRepos
+    public class EmployeeRepos : IEmployeeManagement
     {
         /// <summary>
         /// The connect
@@ -115,15 +115,13 @@ namespace Employee_Management_System.Repository
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public bool DeleteEmployee(int id)
+        public bool DeleteEmployee(string name)
         {
 
             Connection();
             SqlCommand command = new SqlCommand("DeleteEmployee", connect);
-
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@Id", id);
-
+            command.Parameters.AddWithValue("@Name", name);
             connect.Open();
             int i = command.ExecuteNonQuery();
             connect.Close();
@@ -165,6 +163,36 @@ namespace Employee_Management_System.Repository
                          }).ToList();
 
             return employees;
+        }
+        /// <summary>
+        /// Logins the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="city">The city.</param>
+        /// <returns></returns>
+        public bool Login(string username,string password)
+        {
+            Connection();
+            SqlCommand command = new SqlCommand("Login", connect);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Name", username);
+            command.Parameters.AddWithValue("@City", password);
+            connect.Open();
+            DataSet dataSet = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(dataSet);
+            connect.Close();
+            bool loginSuccessful = ((dataSet.Tables.Count > 0) && (dataSet.Tables[0].Rows.Count > 0));
+            
+            if (loginSuccessful && username != "" && password != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
