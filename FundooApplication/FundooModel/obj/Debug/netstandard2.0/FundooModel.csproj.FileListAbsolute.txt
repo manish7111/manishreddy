@@ -1,0 +1,16 @@
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\FundooModel.deps.json
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\FundooModel.dll
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\FundooModel.pdb
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.dll
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.Configuration.dll
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.Security.dll
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.xml
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.Configuration.xml
+C:\Users\Admin\source\repos\FundooModel\bin\Debug\netstandard2.0\System.Security.xml
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.AssemblyInfo.cs
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.csproj.CopyComplete
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.dll
+C:\Users\Admin\source\repos\FundooModel\obj\Debug\netstandard2.0\FundooModel.pdb

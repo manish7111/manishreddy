@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FundooModel\FundooModel.csproj" />
+    <ProjectReference Include="..\FundooRepository\FundooRepository.csproj" />
+  </ItemGroup>
+
+</Project>
