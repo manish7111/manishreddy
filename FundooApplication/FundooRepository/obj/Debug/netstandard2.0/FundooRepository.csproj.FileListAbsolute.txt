@@ -1,11 +1,7 @@
-C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooModel.dll
-C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csprojAssemblyReference.cache
-C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CoreCompileInputs.cache
-C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfoInputs.cache
-C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfo.cs
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.deps.json
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.dll
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.pdb
+C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooModel.dll
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.dll
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.Configuration.dll
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.Security.dll
@@ -13,6 +9,10 @@ C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\FundooMode
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.ComponentModel.DataAnnotations.xml
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.Configuration.xml
 C:\Users\Admin\source\repos\FundooRepository\bin\Debug\netstandard2.0\System.Security.xml
+C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfo.cs
 C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CopyComplete
 C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.dll
 C:\Users\Admin\source\repos\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.pdb

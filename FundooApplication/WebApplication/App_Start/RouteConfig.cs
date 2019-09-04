@@ -24,6 +24,7 @@ namespace WebApplication1
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute("Notes/Add", "add", new { controller = "Notes", action = "Add", id = UrlParameter.Optional });
 
             routes.MapRoute(
                 name: "Default",

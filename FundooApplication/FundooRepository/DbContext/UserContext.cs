@@ -5,7 +5,6 @@
 // <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using FundooModel;
-using System;
 using System.Data.Entity;
 
 /// <summary>
@@ -22,10 +21,11 @@ namespace FundooRepository
         /// <summary>
         /// Initializes a new instance of the <see cref="UserContext"/> class.
         /// </summary>
-        public UserContext() : base("connect")
+        public UserContext() :base("connect")
         {
 
         }
+       
         /// <summary>
         /// Gets or sets the user data.
         /// </summary>
@@ -37,6 +37,11 @@ namespace FundooRepository
             get;
             set;
         }
-       
+        public DbSet<NotesModel> Notes
+        {
+            get;
+            set;
+        }
+
     }
 }

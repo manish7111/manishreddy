@@ -4,6 +4,44 @@
         <name>WebApplication1</name>
     </assembly>
     <members>
+        <member name="T:WebApplication1.RouteConfig">
+            <summary>
+            RouteConfig is the class.
+            </summary>
+        </member>
+        <member name="M:WebApplication1.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            Registers the routes.
+            </summary>
+            <param name="routes">The routes.</param>
+        </member>
+        <member name="T:WebApplication1.SwaggerConfig">
+            <summary>
+            SwaggerConfig is the class
+            </summary>
+        </member>
+        <member name="M:WebApplication1.SwaggerConfig.Register">
+            <summary>
+            Registers this instance.
+            </summary>
+        </member>
+        <member name="M:WebApplication1.SwaggerConfig.GetXmlCommentsPath">
+            <summary>
+            Gets the XML comments path.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebApplication1.WebApiConfig">
+            <summary>
+            WebApiConfig is a class.
+            </summary>
+        </member>
+        <member name="M:WebApplication1.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Registers the specified configuration.
+            </summary>
+            <param name="config">The configuration.</param>
+        </member>
         <member name="M:WebApplication1.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -480,6 +518,109 @@
             Initializes a new instance of the <see cref="T:WebApplication1.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebApplication1.Controllers.AccountController">
+            <summary>
+            AccountController is the class.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApplication1.Controllers.AccountController"/> class.
+            </summary>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.#ctor(BussinessManager.Interface.IAccount)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApplication1.Controllers.AccountController"/> class.
+            </summary>
+            <param name="account">The account.</param>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.Registration(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Registrations the specified user name.
+            </summary>
+            <param name="UserName">Name of the user.</param>
+            <param name="FirstName">The first name.</param>
+            <param name="LastName">The last name.</param>
+            <param name="Email">The email.</param>
+            <param name="Password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.Login(System.String,System.String)">
+            <summary>
+            Logins the specified user name.
+            </summary>
+            <param name="UserName">Name of the user.</param>
+            <param name="Password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.ForgetPassword(System.String,System.String)">
+            <summary>
+            Forgets the password.
+            </summary>
+            <param name="Email">The email.</param>
+            <param name="Password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.ResetPassword(System.String,System.String)">
+            <summary>
+            Resets the password.
+            </summary>
+            <param name="Email">The email.</param>
+            <param name="Password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApplication1.Controllers.AccountController.FaceBookLogin(System.String)">
+            <summary>
+            Faces the book login.
+            </summary>
+            <param name="email">The email.</param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApplication1.DependencyInjection.UnityResolver">
+            <summary>
+            UnityResolver is the class which implements IDependencyResolver interface.
+            </summary>
+            <seealso cref="T:System.Web.Http.Dependencies.IDependencyResolver" />
+        </member>
+        <member name="M:WebApplication1.DependencyInjection.UnityResolver.#ctor(Unity.IUnityContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebApplication1.DependencyInjection.UnityResolver"/> class.
+            </summary>
+            <param name="container">The container.</param>
+            <exception cref="T:System.ArgumentNullException">container</exception>
+        </member>
+        <member name="M:WebApplication1.DependencyInjection.UnityResolver.GetService(System.Type)">
+            <summary>
+            Retrieves a service from the scope.
+            </summary>
+            <param name="serviceType">The service to be retrieved.</param>
+            <returns>
+            The retrieved service.
+            </returns>
+        </member>
+        <member name="M:WebApplication1.DependencyInjection.UnityResolver.GetServices(System.Type)">
+            <summary>
+            Retrieves a collection of services from the scope.
+            </summary>
+            <param name="serviceType">The collection of services to be retrieved.</param>
+            <returns>
+            The retrieved collection of services.
+            </returns>
+        </member>
+        <member name="M:WebApplication1.DependencyInjection.UnityResolver.BeginScope">
+            <summary>
+            Starts a resolution scope.
+            </summary>
+            <returns>
+            The dependency scope.
+            </returns>
+        </member>
+        <member name="M:WebApplication1.DependencyInjection.UnityResolver.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
         </member>
     </members>
 </doc>

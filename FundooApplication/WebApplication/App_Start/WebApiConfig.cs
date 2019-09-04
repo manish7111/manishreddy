@@ -7,6 +7,8 @@
 using BussinessManager.Interface;
 using BussinessManager.Manager;
 using FundooRepository;
+using FundooRepository.Interface;
+using FundooRepository.Repository;
 using System.Web.Http;
 using Unity;
 using WebApplication1.DependencyInjection;
@@ -31,6 +33,8 @@ namespace WebApplication1
             
             container.RegisterType<IUserContext, AccountRepository>();
             container.RegisterType<IAccount, AccountManager>();
+            container.RegisterType<INotesRepository, NotesRepository>();
+            container.RegisterType<INotes, NotesManager>();
             config.DependencyResolver = new UnityResolver(container);
 
 

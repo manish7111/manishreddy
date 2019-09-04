@@ -10,50 +10,59 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// BussinessManager is the project.
-/// </summary>
-namespace BussinessManager.Interface
+namespace FundooRepository.Interface
 {
     /// <summary>
-    /// INotes is the interface.
+    /// INotesRepository is the interface.
     /// </summary>
-    public interface INotes
+    public interface INotesRepository
     {
         /// <summary>
-        /// Adds the notes asynchronous.
+        /// Adds the specified notes.
         /// </summary>
         /// <param name="notes">The notes.</param>
-        /// <returns>returns int value</returns>
-        Task<int> AddNotesAsync(NotesModel notes);
+        /// <returns>returns response</returns>
+        string Add(NotesModel notes);
+
+        /// <summary>
+        /// Saves the changes asynchronous.
+        /// </summary>
+        /// <returns>return response</returns>
+        Task<int> SaveChangesAsync();
+
+        /// <summary>
+        /// Removes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>return response</returns>
+        Task<int> Remove(int id);
+
+        /// <summary>
+        /// Finds the asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>return response</returns>
+        Task<NotesModel> FindAsync(int id);
 
         /// <summary>
         /// Gets all notes asynchronous.
         /// </summary>
-        /// <returns>returns list</returns>
+        /// <returns>return response</returns>
         IEnumerable<NotesModel> GetAllNotesAsync();
 
         /// <summary>
-        /// Deletes the asynchronous.
+        /// Gets the notes asynchronous.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>returns int value</returns>
-        Task<int> DeleteAsync(int id);
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>return response</returns>
+        IList<NotesModel> GetNotesAsync(Guid userId);
 
         /// <summary>
-        /// Updates the asynchronous.
+        /// Updates the notes.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="id">The identifier.</param>
-        /// <returns>returns response</returns>
-        Task UpdateAsync(NotesModel model, int id);
-
-        /// <summary>
-        /// Gets the notes.
-        /// </summary>
-        /// <param name="userId">The user identifier.</param>
-        /// <returns>returns list</returns>
-        IList<NotesModel> GetNotes(Guid userId);
+        void UpdateNotes(NotesModel model, int id);
 
         /// <summary>
         /// Reminders the specified user identifier.
@@ -68,6 +77,6 @@ namespace BussinessManager.Interface
         /// <param name="userId">The user identifier.</param>
         /// <returns>returns list</returns>
         IList<NotesModel> Archive(Guid userId);
+  
     }
-
 }
