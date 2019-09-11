@@ -6,14 +6,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 using BussinessManager.Interface;
 using FundooModel;
-using FundooRepository.ContextConnection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.IO;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+
 
 namespace WebApplication1.Controllers
 {
@@ -26,17 +25,15 @@ namespace WebApplication1.Controllers
         /// <summary>
         /// The notes
         /// </summary>
-        public readonly INotes notes ;
-        /// <summary>
-        /// The connect
-        /// </summary>
-        NotesConnection connect = new NotesConnection();
+        public readonly INotes notes;
+
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="NotesController"/> class.
         /// </summary>
         public NotesController()
         {
-           
+
         }
         /// <summary>
         /// Initializes a new instance of the <see cref="NotesController"/> class.
@@ -55,11 +52,11 @@ namespace WebApplication1.Controllers
         [Route("add")]
         public async Task<IHttpActionResult> Add(NotesModel model)
         {
-          
+
             var result = await this.notes.AddNotesAsync(model);
-            if(result==1)
+            if (result == 1)
             {
-                connect.Add(model);
+                // connect.Add(model);
                 return this.Ok();
             }
             else
@@ -100,17 +97,17 @@ namespace WebApplication1.Controllers
         /// Updates the notes.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <param name="id">The identifier.</param>
         /// <returns></returns>
         [HttpPut]
         [Route("update")]
-        public async Task<IHttpActionResult> UpdateNotes(NotesModel model,int id)
+        public async Task<IHttpActionResult> UpdateNotes(NotesModel model)
         {
             try
             {
-                await this.notes.UpdateAsync(model, id);
+                await this.notes.UpdateAsync(model, model.Id);
                 return this.Ok();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return this.BadRequest(e.Message);
             }
@@ -118,12 +115,12 @@ namespace WebApplication1.Controllers
         /// <summary>
         /// Gets the specified unique identifier.
         /// </summary>
-        /// <param name="guid">The unique identifier.</param>
+        /// <param name="email">The unique identifier.</param>
         /// <returns></returns>
-        public IHttpActionResult Get(Guid guid)
+        public IHttpActionResult Get(string email)
         {
-            IList<NotesModel> notesModel = this.notes.GetNotes(guid);
-            if(notesModel==null)
+            IList<NotesModel> notesModel = this.notes.GetNotes(email);
+            if (notesModel == null)
             {
                 return this.BadRequest("Couldnt find the required notes");
             }
@@ -132,11 +129,11 @@ namespace WebApplication1.Controllers
         /// <summary>
         /// Reminders the specified unique identifier.
         /// </summary>
-        /// <param name="guid">The unique identifier.</param>
+        /// <param name="email">The unique identifier.</param>
         /// <returns></returns>
-        public IHttpActionResult Reminder(Guid guid)
+        public IHttpActionResult Reminder(string email)
         {
-            IList<NotesModel> notesModel = this.notes.Reminder(guid);
+            IList<NotesModel> notesModel = this.notes.Reminder(email);
             if (notesModel == null)
             {
                 return this.BadRequest("Couldnt find the required notes");
@@ -146,16 +143,154 @@ namespace WebApplication1.Controllers
         /// <summary>
         /// Archives the specified unique identifier.
         /// </summary>
-        /// <param name="guid">The unique identifier.</param>
+        /// <param name="email">The unique identifier.</param>
         /// <returns></returns>
-        public IHttpActionResult Archive(Guid guid)
+        public IHttpActionResult Archive(string email)
         {
-            IList<NotesModel> notesModel = this.notes.Archive(guid);
+            IList<NotesModel> notesModel = this.notes.Archive(email);
             if (notesModel == null)
             {
                 return this.BadRequest("Couldnt find the required notes");
             }
             return this.Ok(notes);
+        }
+        /// <summary>
+        /// Adds the note label.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("notelabel")]
+        public IHttpActionResult AddNoteLabel(NotesLabelModel model)
+        {
+            var result = this.notes.AddNotesLabel(model);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+        /// <summary>
+        /// Gets the note label.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("getnotelabel")]
+        public IHttpActionResult GetNoteLabel(string email)
+        {
+            IList<NotesLabelModel> result = this.notes.GetNotesLabel(email);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+        /// <summary>
+        /// Deletes the note label.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("deletenotelabel")]
+        public IHttpActionResult DeleteNoteLabel(int id)
+        {
+            var result = this.notes.DeleteNotesLabel(id);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+
+        /// <summary>
+        /// Adds the collaborator to note.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("collaborator")]
+        public IHttpActionResult AddCollaboratorToNote(CollaboratorModel model)
+        {
+            var result = this.notes.AddCollaboratorToNote(model);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+        /// <summary>
+        /// Removes the collaborator to note.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("removecollaborator")]
+        public IHttpActionResult RemoveCollaboratorToNote(int id)
+        {
+            var result = this.notes.RemoveCollaboratorToNote(id);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+        /// <summary>
+        /// Collaborators the note.
+        /// </summary>
+        /// <param name="receiverEmail">The receiver email.</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("collaboratormail")]
+        public IHttpActionResult CollaboratorNote(string receiverEmail)
+        {
+            var result = this.notes.CollaboratorNote(receiverEmail);
+            if (result == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+                return this.Ok(new { result });
+            }
+        }
+        /// <summary>
+        /// Images this instance.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("image")]
+        public IHttpActionResult Image()
+        {
+
+            var file = HttpContext.Current.Request.Files.Count > 0 ? HttpContext.Current.Request.Files[0] : null;
+            var email = HttpContext.Current.Request.Params.Get("email");
+            if (file == null)
+            {
+                return this.NotFound();
+            }
+            else
+            {
+
+                var result = this.notes.Image(file.InputStream, email);
+                return this.Ok(new { result });
+
+            }
         }
     }
 }

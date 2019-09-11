@@ -55,6 +55,7 @@ namespace FundooModel
             get;
             set;
         }
+
         /// <summary>
         /// Email
         /// </summary>

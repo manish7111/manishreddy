@@ -25,11 +25,12 @@ namespace WebApplication1
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute("Notes/Add", "add", new { controller = "Notes", action = "Add", id = UrlParameter.Optional });
-
+            routes.MapRoute("Notes/Delete", "delete", new { controller = "Notes", action = "Delete", id = UrlParameter.Optional });
+            routes.MapRoute("Notes/Image", "image", new { controller = "Notes", action = "Image", id = UrlParameter.Optional });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Account", action = "Registration", id = UrlParameter.Optional }
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

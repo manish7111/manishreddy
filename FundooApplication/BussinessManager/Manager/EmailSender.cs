@@ -21,7 +21,7 @@ namespace BussinessManager.Manager
     /// EmailSender is a class which implements IEmailSender interface.
     /// </summary>
     /// <seealso cref="BussinessManager.Interface.IEmailSender" />
-    public class EmailSender: IEmailSender
+    public class EmailSender : IEmailSender
     {
         /// <summary>
         /// The email settings
@@ -47,7 +47,7 @@ namespace BussinessManager.Manager
         {
             try
             {
-                
+
                 var credentials = new NetworkCredential(this.emailSettings.Sender, this.emailSettings.Password);
                 var mail = new MailMessage()
                 {
@@ -68,7 +68,8 @@ namespace BussinessManager.Manager
                 };
                 client.Send(mail);
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }

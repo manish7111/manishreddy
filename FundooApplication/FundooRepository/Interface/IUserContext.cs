@@ -4,6 +4,8 @@
 // </copyright>
 // <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
+
+
 using FundooModel;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -24,7 +26,7 @@ namespace FundooRepository
         /// </summary>
         /// <param name="userModel">The user model.</param>
         /// <returns></returns>
-        Task CreateAsync(UserModel userModel);
+        Task CreateAsync(UserModels userModel);
         /// <summary>
         /// Logins the asynchronous.
         /// </summary>

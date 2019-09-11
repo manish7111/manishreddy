@@ -26,7 +26,7 @@ namespace BussinessManager.Manager
         /// <summary>
         /// The context
         /// </summary>
-        private IUserContext context;
+        private readonly IUserContext context;
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountManager"/> class.
         /// </summary>
@@ -47,7 +47,7 @@ namespace BussinessManager.Manager
         /// </summary>
         /// <param name="userModel">The user model.</param>
         /// <returns></returns>
-        public async Task<bool> RegistrationAsync(UserModel userModel)
+        public async Task<bool> RegistrationAsync(UserModels userModel)
         {
             await this.context.CreateAsync(userModel);
             return true;
@@ -90,7 +90,7 @@ namespace BussinessManager.Manager
         /// <returns></returns>
         public async Task<bool> ForgetPassword(ResetPasswordModel resetPasswordModel)
         {
-           
+
             await this.context.ResetPasswordAsync(resetPasswordModel);
             return true;
         }

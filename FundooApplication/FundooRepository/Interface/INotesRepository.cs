@@ -5,8 +5,10 @@
 // <creator name="Manish Reddy"/>
 // --------------------------------------------------------------------------------------------------------------------
 using FundooModel;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,7 +57,7 @@ namespace FundooRepository.Interface
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>return response</returns>
-        IList<NotesModel> GetNotesAsync(Guid userId);
+        IList<NotesModel> GetNotesAsync(string email);
 
         /// <summary>
         /// Updates the notes.
@@ -69,14 +71,58 @@ namespace FundooRepository.Interface
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>returns list</returns>
-        IList<NotesModel> Reminder(Guid userId);
+        IList<NotesModel> Reminder(string email);
 
         /// <summary>
         /// Archives the specified user identifier.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>returns list</returns>
-        IList<NotesModel> Archive(Guid userId);
-  
+        IList<NotesModel> Archive(string email);
+        /// <summary>
+        /// Adds the notes label.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        string AddNotesLabel(NotesLabelModel model);
+        /// <summary>
+        /// Gets the notes label.
+        /// </summary>
+        /// <param name="Email">The email.</param>
+        /// <returns></returns>
+        List<NotesLabelModel> GetNotesLabel(string Email);
+        /// <summary>
+        /// Deletes the notes label.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        string DeleteNotesLabel(int id);
+        /// <summary>
+        /// Adds the collaborator to note.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        string AddCollaboratorToNote(CollaboratorModel model);
+        /// <summary>
+        /// Removes the collaborator to note.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        string RemoveCollaboratorToNote(int id);
+        /// <summary>
+        /// Collaborators the note.
+        /// </summary>
+        /// <param name="receiverEmail">The receiver email.</param>
+        /// <returns></returns>
+        string CollaboratorNote(string receiverEmail);
+        /// <summary>
+        /// Images the specified file.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        string Image(Stream file, string email);
+
+
     }
 }

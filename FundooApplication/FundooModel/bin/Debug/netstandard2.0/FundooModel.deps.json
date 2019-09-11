@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "1f6c744515f37e019e50d2b787232856ca5602cc"
+    "signature": "68e7dca76a85140364ed3afd5a07bba567880be7"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,7 +10,9 @@
       "FundooModel/1.0.0": {
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
+          "Microsoft.CodeDom.Providers.DotNetCompilerPlatform": "2.0.0",
           "NETStandard.Library": "2.0.3",
+          "FundooModel": "1.0.0.0",
           "System.ComponentModel.DataAnnotations": "4.0.0.0"
         },
         "runtime": {
@@ -49,10 +51,26 @@
           }
         }
       },
+      "Microsoft.CodeDom.Providers.DotNetCompilerPlatform/2.0.0": {
+        "runtime": {
+          "lib/net45/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.50524.0"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "FundooModel/1.0.0.0": {
+        "runtime": {
+          "FundooModel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "System.ComponentModel.DataAnnotations/4.0.0.0": {
@@ -108,6 +126,13 @@
       "path": "microsoft.aspnet.identity.entityframework/2.2.2",
       "hashPath": "microsoft.aspnet.identity.entityframework.2.2.2.nupkg.sha512"
     },
+    "Microsoft.CodeDom.Providers.DotNetCompilerPlatform/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ju0kvSQ5ZKimkHQs2tDIN6/6z8ZEXJOjAoQP0drNQspUYJ1lSTPaITkl30Jgxrp/KFr989/xCXkoPVPFKXSh/w==",
+      "path": "microsoft.codedom.providers.dotnetcompilerplatform/2.0.0",
+      "hashPath": "microsoft.codedom.providers.dotnetcompilerplatform.2.0.0.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -121,6 +146,11 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "FundooModel/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     },
     "System.ComponentModel.DataAnnotations/4.0.0.0": {
       "type": "reference",

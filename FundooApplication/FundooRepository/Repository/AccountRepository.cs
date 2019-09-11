@@ -30,15 +30,15 @@ namespace FundooRepository
         /// <summary>
         /// The context
         /// </summary>
-        private UserContext context = null;
+        private readonly UserContext context = null;
         /// <summary>
         /// The application settings
         /// </summary>
-        private ApplicationSettings applicationSettings=null;
+        private readonly ApplicationSettings applicationSettings;
         /// <summary>
         /// The distributed cache
         /// </summary>
-        private IDistributedCache distributedCache;
+        private readonly IDistributedCache distributedCache=null;
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountRepository"/> class.
         /// </summary>
@@ -55,15 +55,16 @@ namespace FundooRepository
         {
             this.context = context;
             this.applicationSettings = applicationSettings;
+           
         }
         /// <summary>
         /// Creates the asynchronous.
         /// </summary>
         /// <param name="userModel">The user model.</param>
         /// <returns></returns>
-        public Task CreateAsync(UserModel userModel)
+        public Task CreateAsync(UserModels userModel)
         {
-            UserDbModel userDbModel = new UserDbModel()
+            UserModels userDbModel = new UserModels()
             {
                 UserName = userModel.UserName,
                 FirstName = userModel.FirstName,
@@ -80,25 +81,31 @@ namespace FundooRepository
         /// <returns></returns>
         public async Task<string> LoginAsync(LoginModel loginModel)
         {
-            var user = await this.FindByNameAsync(loginModel.UserName);
+            var user = await this.FindByEmailAsync(loginModel.Email);
             if (user != null && await this.CheckPasswordAsync(loginModel.Password))
             {
-                var tokenDescriptor = new SecurityTokenDescriptor
+                try
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    var tokenDescriptor = new SecurityTokenDescriptor
                     {
-                       new Claim("UserName",user.UserName)
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.applicationSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-                var cacheKey = loginModel.UserName;
-                this.distributedCache.GetString(cacheKey);
-                this.distributedCache.SetString(cacheKey, token);
-                return token;
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
+                       new Claim("Email",user.Email)
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                       // SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.applicationSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    var cacheKey = loginModel.Email;
+                    //this.distributedCache.GetString(cacheKey);
+                    //this.distributedCache.SetString(cacheKey, token);
+                    return token;
+                }catch(Exception  e)
+                {
+                    throw new Exception(e.Message);
+                }
             }
             return "invalid user";
         }
@@ -109,7 +116,7 @@ namespace FundooRepository
         /// <returns></returns>
         public Task<IdentityUser> FindByNameAsync(string userName)
         {
-            UserModel user = context.UserData.Where(run => run.UserName == userName).SingleOrDefault();
+            UserModels user = context.UserData.Where(run => run.UserName == userName).SingleOrDefault();
             IdentityUser Iuser = new IdentityUser()
             {
                 UserName = user.UserName
@@ -131,7 +138,7 @@ namespace FundooRepository
         public Task ResetPasswordAsync(ResetPasswordModel resetPasswordModel)
         {
             Connection connection = new Connection();
-            UserModel obj = context.UserData.Where(userName => userName.Email == resetPasswordModel.Email).SingleOrDefault();
+            UserModels obj = context.UserData.Where(userName => userName.Email == resetPasswordModel.Email).SingleOrDefault();
             obj.Password = resetPasswordModel.Password;
             connection.Update(obj);
             return Task.Run(() => context.SaveChanges());
@@ -143,7 +150,7 @@ namespace FundooRepository
         /// <returns></returns>
         public Task<IdentityUser> FindByEmailAsync(string email)
         {
-            UserModel user = context.UserData.Where(r => r.Email == email).SingleOrDefault();
+            UserModels user = context.UserData.Where(r => r.Email == email).SingleOrDefault();
             IdentityUser Iuser = new IdentityUser()
             {
                 Email = user.Email
@@ -158,7 +165,7 @@ namespace FundooRepository
         public Task ForgetPasswordAsync(ResetPasswordModel model)
         {
             Connection connection = new Connection();
-            UserModel obj = context.UserData.Where(userName => userName.Email == model.Email).SingleOrDefault();
+            UserModels obj = context.UserData.Where(userName => userName.Email == model.Email).SingleOrDefault();
             obj.Password = model.Password;
             connection.Update(obj);
             return Task.Run(() => context.SaveChanges());

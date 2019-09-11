@@ -6,14 +6,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 using BussinessManager.Interface;
 using FundooModel;
+using FundooModel.UserModel;
 using FundooRepository.ContextConnection;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-/// <summary>
-/// WebApplication is the Namespace
-/// </summary>
+
 namespace WebApplication1.Controllers
 {
     /// <summary>
@@ -22,8 +21,9 @@ namespace WebApplication1.Controllers
     /// <seealso cref="System.Web.Http.ApiController" />
     public class AccountController : ApiController
     {
-        private IAccount account = null;
-        Connection connection = new Connection();
+        private readonly IAccount account = null;
+        readonly Connection connection = new Connection();
+        readonly AdminConnection admin = new AdminConnection();
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                UserModel userModel = new UserModel();
+                UserModels userModel = new UserModels();
                 userModel.UserName = UserName;
                 userModel.FirstName = FirstName;
                 userModel.LastName = LastName;
@@ -69,28 +69,28 @@ namespace WebApplication1.Controllers
                 return this.BadRequest(e.Message);
             }
         }
-        /// <summary>
-        /// Logins the specified user name.
-        /// </summary>
-        /// <param name="UserName">Name of the user.</param>
-        /// <param name="Password">The password.</param>
-        /// <returns></returns>
+       /// <summary>
+       /// Logins the instance.
+       /// </summary>
+       /// <param name="loginModel"></param>
+       /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IHttpActionResult> Login(string UserName, string Password)
+        public async Task<IHttpActionResult> Login(LoginModel loginModel)
         {
-            LoginModel loginModel = new LoginModel();
-            loginModel.UserName = UserName;
-            loginModel.Password = Password;
             var result = await this.account.LoginAsync(loginModel);
-            var user = await this.account.FindByName(UserName);
+            AdminModel model = new AdminModel();
+            model.Email = loginModel.Email;
+            DateTime time = DateTime.Now;
+            model.LoginTime = time.ToString();
+            admin.Add(model);
             if (result == "invalid user")
             {
                 return this.BadRequest();
             }
             else
             {
-                return this.Ok(new { result, user });
+                return this.Ok(new { result});
             }
         }
         /// <summary>

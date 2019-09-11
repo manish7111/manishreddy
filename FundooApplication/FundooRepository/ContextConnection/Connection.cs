@@ -7,6 +7,7 @@
 using FundooModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 /// <summary>
@@ -27,7 +28,7 @@ namespace FundooRepository.ContextConnection
         /// Adds the specified user model.
         /// </summary>
         /// <param name="userModel">The user model.</param>
-        public void Add(UserModel userModel)
+        public void Add(UserModels userModel)
         {
             context.UserData.Add(userModel);
             context.SaveChanges();
@@ -36,11 +37,16 @@ namespace FundooRepository.ContextConnection
         /// Updates the specified user model.
         /// </summary>
         /// <param name="userModel">The user model.</param>
-        public void Update(UserModel userModel)
+        public void Update(UserModels userModel)
         {
-            UserModel person = context.UserData.Find(userModel.Email);                 
+            UserModels person = context.UserData.Find(userModel.Email);                 
             person.Password = userModel.Password;
             context.SaveChanges();
+        }
+        public IEnumerable<UserModels> Details()
+        {
+            var list = context.UserData.ToList<UserModels>();
+            return list;
         }
     }
 }
