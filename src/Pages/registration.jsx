@@ -3,6 +3,8 @@ import RegistrationComponent from '../Components/registrationComponent.jsx';
 
 class Registration extends Component {
     render() {
+        console.log("id in register page------------>>>",this.props);
+        
         return (
             <div>
                 <RegistrationComponent props={this.props}/>

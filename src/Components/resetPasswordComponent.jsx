@@ -1,32 +1,31 @@
-/*****************************************************************************************************
- *  @Purpose        : Here we have to create the ForgetPasswordComponent that contains all required ForgetPasswordComponent components.
- *  @file           : ForgetPasswordComponent.jsx       
- *  @author         : Manish Reddy
- *  @version        : v0.1
- *  @since          : 12-09-2019
- *****************************************************************************************************/
-
 import React, { Component } from 'react'
 import { TextField, Card,Button } from '@material-ui/core'
-import {userForgetPassword} from '../Services/userServices.js'
-//ForgetPasswordComponent is a component class which implememnts component
-export default class ForgetPasswordComponent extends Component {
+import {userResetPassword} from '../Services/userServices.js'
+export default class ResetPasswordComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            Email:""
-            
+            Email:"",
+            Password:""
         }
     }
     //handleChangeEmail is used to change the email when required.
     handleChangeEmail = (event) => {
-        const email = event.target.value
+        const Email = event.target.value
         this.setState({
-            Email: email
+            Email: Email
         })
+        console.log("reset email",this.state.Email);
+        
     }
-    
-   
+    handleChangePassword = (event) => {
+        const Password = event.target.value
+        this.setState({
+            Password: Password
+        })
+        console.log("reset password",this.state.Password);
+
+    }
     handleForgetPassword=(event)=>{
         event.preventDefault();
         if (this.state.Email === "") {
@@ -34,14 +33,19 @@ export default class ForgetPasswordComponent extends Component {
                 openSnackBar: true,
                 snackBarMessage: "Email cannot be empty..!"
             });
-
+        }else if (this.state.Password === ""){
+            this.setState({
+                openSnackBar: true,
+                snackBarMessage: "Password cannot be empty..!"
+            });
         }else
         {
             var data = {
-                Email: this.state.Email
+                Email: this.state.Email,
+                Password:this.state.Password
               
             }
-            userForgetPassword(data)
+            userResetPassword(data)
                 .then((response) => {
                     console.log("login response====>", response);
 
@@ -49,7 +53,7 @@ export default class ForgetPasswordComponent extends Component {
                         openSnackBar: true,
                         snackBarMessage: "SignIn Successfully!!"
                     });
-                    this.props.props.history.push("/reset");
+                    this.props.props.history.push("/login");
 
                 })
                 .catch((err) => {
@@ -61,9 +65,6 @@ export default class ForgetPasswordComponent extends Component {
                 });
         }
     };
-        
-    
-   //rendor is a function.
     render() {
         return (
             <div>
@@ -72,7 +73,7 @@ export default class ForgetPasswordComponent extends Component {
                         <div style={{ marginLeft: "68px" }}>
                             <b>
                                 <h4>
-                                    <span style={{ color: "Red" }}>Forget Password</span>
+                                    <span style={{ color: "Red" }}>Reset Password</span>
                                 </h4>
                             </b>
                         </div>
@@ -89,7 +90,19 @@ export default class ForgetPasswordComponent extends Component {
                                 value={this.state.Email}
                             />
                         </div>
-                       
+                        <div className='forgetFeilds'>
+                        <TextField
+                            id="outlined-Password-input"
+                            label="Enter Correct Password*"
+                            type="Password"
+                            name="Password"
+                            autoComplete="Password"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChangePassword}
+                            value={this.state.Password}
+                        />
+                    </div>
                         <div className='submitForget'>
                             <Button variant="contained" color="primary" onClick={this.handleForgetPassword} >
                                 Submit

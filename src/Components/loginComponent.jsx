@@ -13,14 +13,33 @@ import { userSignIn, userFbSignIn } from '../Services/userServices.js';
 import Snackbar from '@material-ui/core/Snackbar';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 
-//LoginComponent is a class which extends React class.
+const theme = createMuiTheme({
+    overrides: {
+        MuiFormLabel: {
+            root: {
+                lineHeight: 0
+            }
+        },
+        MuiInputBase: {
+            root: {
+                height: "71%"
+            },
+            input:{
+                height: "0.1875em"
+            }
+        }
+    }
+})
+
 export default class LoginComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             Email: "",
             Password: ""
+       
         }
     }
 
@@ -31,16 +50,16 @@ export default class LoginComponent extends React.Component {
             Email: Email
         })
     }
-     //handleChangePassword is used to change the state of Password whenever required.
+    //handleChangePassword is used to change the state of Password whenever required.
     handleChangePassword = (event) => {
         const Password = event.target.value
         this.setState({
             Password: Password
         })
     }
-     //handleRegister is a button used to register the users and redirect to login page.
+    //handleRegister is a button used to register the users and redirect to login page.
     handleRegister = () => {
-        this.props.props.history.push('/register')
+        this.props.props.history.push('/card')
     }
     //handleForget is used to get the new password according to the email address provided. 
     handleForget = () => {
@@ -64,11 +83,13 @@ export default class LoginComponent extends React.Component {
         }
         localStorage.setItem('myData', this.state.Email);
         localStorage.getItem('myData');
+       
         console.log("-----------", data.Email);
 
         userFbSignIn(data)
             .then((response) => {
                 console.log("login response====>", response);
+               
                 this.setState({
                     openSnackBar: true,
                     snackBarMessage: "SignIn Successfully!!"
@@ -103,10 +124,16 @@ export default class LoginComponent extends React.Component {
             }
             localStorage.setItem('myData', this.state.Email);
             localStorage.getItem('myData');
+            
             userSignIn(data)
                 .then((response) => {
                     console.log("login response====>", response);
-
+                    localStorage.setItem('ProfilePic',response.data.data[0].ProfilePic);
+                    localStorage.getItem('ProfilePic');
+                    localStorage.setItem('FirstName',response.data.data[0].FirstName);
+                    localStorage.getItem('FirstName');
+                    localStorage.setItem('LastName',response.data.data[0].LastName);
+                    localStorage.getItem('LastName');
                     this.setState({
                         openSnackBar: true,
                         snackBarMessage: "SignIn Successfully!!"
@@ -138,13 +165,14 @@ export default class LoginComponent extends React.Component {
         //for setting and getting the localstorage data.
         localStorage.setItem('myData', this.state.Email);
         localStorage.getItem('myData');
-        CacheStorage.open();
+        
+
         console.log("-----------", data.Email);
 
         //userFbSignIn is a service call data.
         userFbSignIn(data)
             .then((response) => {
-
+               
                 console.log("login response====>", response);
                 this.setState({
                     openSnackBar: true,
@@ -170,85 +198,92 @@ export default class LoginComponent extends React.Component {
         return (
             <div>
                 <form className="login">
-                    <Card className='loginCard'>
-                        <div className='adjust'>
-                            <div className='font' style={{ marginLeft: "155px" }}>
-                                <b >
-                                    <h4>
-                                        <span style={{ color: "blue" }}>F</span>
-                                        <span style={{ color: "Red" }}>u</span>
-                                        <span style={{ color: "Yellow" }}>n</span>
-                                        <span style={{ color: "blue" }}>d</span>
-                                        <span style={{ color: "Green" }}>o</span>
-                                        <span style={{ color: "Red" }}>o</span>
-                                    </h4>
-                                </b>
-                            </div>
-                            <div style={{ marginLeft: "170px" }}>
-                                <b>
-                                    SignIn
+                    <MuiThemeProvider theme={theme}>
+                        <Card className='loginCard' >
+                            <div className='adjust'>
+                                <div className='font' style={{ marginLeft: "155px" }}>
+                                    <b >
+                                        <h4>
+                                            <span style={{ color: "blue" }}>F</span>
+                                            <span style={{ color: "Red" }}>u</span>
+                                            <span style={{ color: "Yellow" }}>n</span>
+                                            <span style={{ color: "blue" }}>d</span>
+                                            <span style={{ color: "Green" }}>o</span>
+                                            <span style={{ color: "Red" }}>o</span>
+                                        </h4>
+                                    </b>
+                                </div>
+                                <div style={{ marginLeft: "170px" }}>
+                                    <b>
+                                        SignIn
                             </b>
-                            </div>
-                            <div style={{ marginLeft: "115px" }}>Use Your Google Account</div>
-                            <div className='inputField'>
-                                <TextField required
-                                    id="outlined-email-input"
-                                    label="Email"
-                                    type="email"
-                                    name="email"
-                                    autoComplete="email"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={this.handleChangeEmail}
-                                    value={this.state.Email}
-                                />
-                            </div>
-                            <div className='inputField'>
-                                <TextField required
-                                    id="outlined-password-input"
-                                    label="Password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    margin="normal"
-                                    variant="outlined"
-                                    onChange={this.handleChangePassword}
-                                    value={this.state.Password}
-                                />
-                            </div>
-                            <div className='button'>
-                                <Button variant="contained" color="secondary" onClick={this.handleSignIn}>
-                                    SignIn
+                                </div>
+                                <div style={{ marginLeft: "115px" }}>Use Your Google Account</div>
+                                <div className='inputField'>
+                                    <TextField required
+                                        id="Email"
+                                        label="Email"
+                                        type="email"
+                                        name="email"
+                                        autoComplete="email"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={this.handleChangeEmail}
+                                        value={this.state.Email}
+                                    />
+                                </div>
+                                <div className='inputField'>
+                                    <TextField required
+                                        id="Password"
+                                        label="Password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                        margin="normal"
+                                        variant="outlined"
+                                        onChange={this.handleChangePassword}
+                                        value={this.state.Password}
+                                    />
+                                </div>
+                                <div className='button-signIn'>
+                                    <Button variant="contained" color="secondary" onClick={this.handleSignIn}>
+                                        SignIn
                             </Button>
-                                <Button variant="contained" color="primary" onClick={this.handleRegister}>
-                                    SignUp
+                            
+                                </div>
+                                <div className='butt'>
+                                
+                                    <Button color="primary" onClick={this.handleForget}>
+                                        Forgot
+                                        Password ?
+                                
                             </Button>
-                            </div>
-                            <div className='butt'>
-                                <Button color="primary" onClick={this.handleForget}>
-                                    Forgot
-                                    Password
-                            </Button>
-                            </div>
-                            <div className='google'>
-                                <GoogleLogin
-                                    clientId="768275105166-ak5hnnsd2ldfdr2orpoi00pcoasi86h8.apps.googleusercontent.com"
-                                    buttonText="LOGIN WITH GOOGLE"
-                                    onSuccess={this.responseGoogle}
-                                    onFailure={this.responseGoogle}
-                                    cookiePolicy={'single_host_origin'}
-                                    callback={this.callbackResponse}
-                                /></div>
-                            <div className='fb'><FacebookLogin
-                                appId="536509143751633"
-                                fields="email"
-                                onClick={this.componentClicked}
-                                cookiePolicy={'single_host_origin'}
-                                callback={this.responseFacebook}
-                                icon="fa-facebook"
-                            /></div>
 
-                        </div>
-                    </Card>
+                                </div>
+                                <div className='login-differentiate'>  Or SignIn With: </div>
+                                <div className='google'>
+                                    <GoogleLogin
+                                        clientId="768275105166-ak5hnnsd2ldfdr2orpoi00pcoasi86h8.apps.googleusercontent.com"
+                                        buttonText="LOGIN WITH GOOGLE"
+                                        onSuccess={this.responseGoogle}
+                                        onFailure={this.responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
+                                        callback={this.callbackResponse}
+                                    /></div>
+                                <div className='fb'>
+                                    <FacebookLogin
+                                        appId="536509143751633"
+                                        fields="email"
+                                        onClick={this.componentClicked}
+                                        cookiePolicy={'single_host_origin'}
+                                        callback={this.responseFacebook}
+                                        icon="fa-facebook"
+                                    /></div>
+                                    <div className='dot'>....................................................................................................................</div>
+                                <div className='login-signup'> Not a Member? </div>
+                                <div  className='login-register'><Button   color="primary" onClick={this.handleRegister}> Register </Button></div>
+                            </div>
+                        </Card>
+                    </MuiThemeProvider>
                 </form>
                 <Snackbar
                     anchorOrigin={{

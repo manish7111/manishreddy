@@ -12,6 +12,13 @@
   margin-bottom: 1.5%;
 } */
 
+/* #root{
+  display:flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+} */
+
 .login {
   display: flex;
   justify-content: center;
@@ -32,9 +39,37 @@
   margin-left: 145px
 }
 
-.inputField {
-  margin-left: 90px;
+.login-differentiate {
+  display: flex;
+  justify-content: center;
+  font-size: 14px
 }
+
+.inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -10px;
+}
+
+.login-signup {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.login-register {
+  display: flex;
+  justify-content: center;
+  font-weight: 50%;
+}
+
+.dot {
+  margin-top: -8px;
+  font-weight: 100;
+}
+
 .font {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin-top: 0px
@@ -42,46 +77,75 @@
 
 .button {
   display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-bottom: 10px
+  justify-content: flex-end;
+  width: 9%;
+  margin-top: 0.5%;
+}
+
+.button-signIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4%;
 }
 
 .butt {
-  margin-left: 115px;
-  font-size: 5px
+  display: flex;
+  justify-content: center;
+  margin-top: 1%
 }
 
 .register {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 150px;
+  margin-top: 80px;
 }
 
 .registerCard {
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   flex-direction: column;
-  width: 520px;
-  height: 450px;
+  width: 550px;
+  height: 580px;
+  margin-top: -3%;
 }
-.input{
-  margin-left: 150px;
-  margin-right: 50px;
-  display: flex;
-  justify-content: space-between
 
+.plan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -50px;
+  margin-top: 30px
 }
+
+.div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -75px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  margin-left: 40px
+}
+
+.input1 {
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  margin-bottom: -15px;
+}
+
 .submit {
   display: flex;
-  justify-content: space-between;
-  margin-left: 32%;
-  margin-right: 32%;
-  margin-top: 8px
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20vw;
+  margin-left: -0.5px
 }
 
 .forgetPassword {
@@ -99,33 +163,661 @@
   width: 300px;
   height: 300px;
 }
-.forgetFeilds{
+
+.forgetFeilds {
   margin-left: 50px;
   font-size: 5px;
 }
+
 .submitForget {
   display: flex;
   margin-left: 38%;
   margin-right: 28%;
   margin-top: 15px
 }
-.social{
-  display:flex;
+
+.social {
+  display: flex;
   justify-content: space-between;
   text-align: left;
   width: 100%;
   font-size: 1em
 }
-.fb{
-  column-width: auto;
-  margin-left: 70px
+
+.fb {
+  justify-content: center;
+  display: flex;
 }
-.adjust{
-  margin-top: 50px;
-  margin-bottom: 70px
+
+.kep-login-facebook.metro {
+  border-radius: 35px;
+  color: #faf5f5;
 }
-.google{
-  margin-top: 10px;
-margin-left: 90px;
-margin-bottom: 8px
+
+.adjust {
+  margin-top: 60px;
+  margin-bottom: 50px
+}
+
+.google {
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: center;
+  font-weight: 0;
+}
+
+.fundooNotes {
+  display: flex;
+  margin-top: 30px;
+  width: 400px;
+  height: 100px;
+  margin-left: 40px;
+  margin-top: 15px;
+}
+
+.head {
+  margin-top: 20px;
+}
+
+.service-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 9%;
+  margin-left: 35px;
+}
+
+.service-card-static {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 9%;
+  margin-left: 30px;
+}
+
+.service-card-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.first-outer {
+  display: flex;
+  width: 50%;
+}
+
+.first-outer-static {
+  display: flex;
+  width: 25%;
+}
+
+.innerCard {
+  width: 104%;
+  height: 100%;
+  margin-top: -15%;
+  margin-left: -19%;
+  line-height: 3;
+  font-family: cursive;
+}
+
+.data-service-card {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4%;
+  line-height: 0.75;
+  margin-left: -6px;
+}
+
+h6 {
+  font-size: 1rem;
+  height: 2rem;
+  line-height: 2;
+}
+
+.serviceLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 230px;
+  margin-left: -8px;
+}
+
+.outerCard {
+  width: 94%;
+  height: 11rem;
+  margin-top: 19px;
+  ;
+}
+
+.add-cart {
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.kep-login-facebook.metro {
+  width: 100%;
+  height: 86%;
+  line-height: 0.1;
+  justify-content: center;
+  text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: left;
+  width: 45%;
+  margin-bottom: 0.3%;
+  height: 3rem;
+}
+
+.menu-adjust {
+  width: 13%
+}
+
+#note {
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  margin-left: 8px;
+  align-items: center;
+  margin-right: 17px;
+  width: 95%;
+}
+
+.fundoo-appbar {
+  margin-left: 1%;
+  margin-top: 5.5%;
+}
+
+.class-searchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5%;
+}
+
+.search {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 0.5%;
+  background: beige;
+  width: 100%;
+  margin-top: 1.5%;
+  border-radius: 15px;
+}
+
+.fundoo-title {
+  width: 15%;
+  font-family: cursive
+}
+
+.Create-Note {
+  display: flex;
+  align-items: center;
+  height: 50%;
+  justify-content: center;
+  margin-top: 8%;
+  padding: 0px 4px;
+  line-height: 3rem;
+}
+
+.Create-Note-Title {
+  display: flex;
+  align-items: center;
+  height: 50%;
+  justify-content: center;
+  margin-top: 6%;
+  padding: 0px 4px;
+  line-height: 3rem;
+}
+
+.Notes-Icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notes-list {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+.labels-list{
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+  margin-top: 5%;
+  margin-left: 12%;
+}
+
+.notes-align {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 1px 9px;
+  width: 100%;
+}
+
+.get-notes {
+  display: flex;
+  width: 28%;
+  justify-content: center;
+  /* height: auto; */
+  margin-top: 3%;
+}
+.label-notes {
+  display: flex;
+  width: 28%;
+  justify-content: center;
+  /* height: auto; */
+  margin-top: 3%;
+}
+
+.title {
+  height: auto;
+}
+
+.notes-card {
+  display: flex;
+  height: fit-content;
+}
+
+.notes-align {
+  /* width: -10%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1px 9px;
+}
+
+.notes-alignment {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin-top: 3%;
+}
+
+.createNoteMainCard {
+  width: 30%;
+}
+
+.created-notes-icon {
+  visibility: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 3px;
+  width: 117%;
+  color: #312f2f;
+  margin-top: 7px;
+}
+
+.created-notes-icon1 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 3px;
+  width: 117%;
+  color: black;
+}
+
+.cardDesc:hover .created-notes-icon, .created-notes-icon:hover {
+  visibility: visible
+}
+
+.cardDesc:hover {
+  box-shadow: 3px 2px 9px 2px whitesmoke;
+  width: 80%;
+  height: fit-content;
+}
+
+.cardDesc:hover .created-notes-icons, .created-notes-icons:hover {
+  visibility: visible
+}
+
+/* .created-notes-icon :hover {
+  color: black;
+ visibility: visible
+} */
+
+.trash-notes-alignment {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: auto;
+  margin-top: 5%;
+  /* flex-wrap: wrap; */
+  width: -10px;
+  padding: 1px 9px;
+}
+
+.get-trash-notes {
+  display: flex;
+  /* align-items: center; */
+  width: 20%;
+  margin-right: 1%;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: auto;
+  margin-top: 2%;
+}
+
+.notes-trash-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 97%;
+}
+
+.colorPalleteCard {
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.reminder {
+  margin-right: 131px;
+}
+
+.reminderContainer {
+  display: flex;
+}
+
+.notes-trash-align {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 91%;
+  padding: 1px 5px;
+}
+
+.created-notes-icons {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 21px;
+  color: black;
+}
+
+.notes-trash-card {
+  display: flex;
+  justify-content: flex-start;
+  width: 73%;
+}
+
+.res-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5%;
+}
+
+.empty-div {
+  display: flex;
+  justify-content: center;
+}
+
+.chip-reminder {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  margin-bottom: 4%;
+}
+
+body {
+  background-color: dimgray;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.grid-view {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3px;
+}
+
+.refresh {
+  width: 19%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3.5px;
+}
+
+.setting {
+  margin-top: 1px;
+}
+
+#listview {
+  display: flex;
+  width: 84%;
+}
+
+.pin {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.collab-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.collab-alaign {
+  display: flex
+}
+
+.notes-reminder-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5%;
+  /* margin-bottom: 29%; */
+}
+
+.get-Reminder-note {
+  display: flex;
+  justify-content: center;
+  width: 21%;
+  margin-top: 5%;
+  /* height: 16%; */
+}
+
+.get-Reminder-note {
+  display: flex;
+  justify-content: center;
+  width: 28%;
+  margin-top: 5%;
+  /* height: 16%; */
+}
+
+.notes-reminder-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5%;
+  /* margin-bottom: 29%; */
+  width: 100%;
+}
+
+.remainder-notes-alignment {
+  width: -10px;
+  /* width: auto; */
+  display: flex;
+  width: -10px;
+  justify-content: center;
+  margin-left: 150px;
+}
+
+.collab {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.label-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-label-div {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-label-card {
+  background-color: white;
+  width: 77%;
+}
+
+.label-adding {
+  display: flex;
+}
+
+#note {
+  display: flow-root;
+}
+
+.edit-label-align {
+  display: flex;
+  margin-left: 13%;
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
+
+.create-label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+li.create-label {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.more-icon-div {
+  display: flex;
+  background-color: whitesmoke;
+  justify-content: space-evenly;
+}
+
+.edit-editbutton {
+  margin: auto;
+  margin-left: 28%;
+}
+
+.signout-popper {
+  margin-top: 0.705%;
+  width: 16%;
+}
+
+.image-icon {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4%;
+  margin-left: 3%;
+}
+
+.image-icon-extension {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2%;
+  margin-bottom: 0%;
+  margin-left: 3%;
+  margin-right: -8%;
+}
+
+.notes-align-div {
+  width: 100%;
+}
+
+.image-upload {
+  display: flex;
+  justify-content: center;
+  /* height: 82%; */
+  width: 389%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .createNoteMainCard {
+    width: 67%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .createNoteMainCard {
+    width: 75%;
+    margin-top: 5px
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .create-note-class {
+    margin-top: 25%
+  }
+}
+
+@media only screen and (max-width: 1075px) {
+  .fundoo-title {
+    width: 29%;
+    font-family: cursive;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .button {
+    margin-left: 10px
+  }
+  .setting {
+    margin-left: 3px
+  }
+  .h4{
+    font-size: 1.1rem;
+  }
+}
+@media only screen and (max-width: 1080px) {
+  .notes-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1px 9px;
+    width: 236px;
+}
+}
+@media only screen and (max-width: 535px) {
+.get-notes {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  /* height: auto; */
+  margin-top: 3%;
+}
+
+}
+@media only screen and (max-width: 670px){
+  .fundoo-appbar {
+    font-size: 1rem;
+}
+}
+@media only screen and (max-width: 740px){
+.button{
+  margin-left: 10px;
+}
+}
+@media only screen and (max-width: 320px){
+  .notes-align {
+    margin-left: -7px;
+  }
 }

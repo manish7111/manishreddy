@@ -7,10 +7,47 @@
  *****************************************************************************************************/
 
 import React, { Component } from 'react'
-import { TextField, Card, Button } from '@material-ui/core';
+import { TextField, Card, Button, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
-import { userRegister } from '../Services/userServices.js'
-export default class RegistrationComponent extends Component {
+import { userRegister } from '../Services/userServices.js';
+import CardComponent from '../Components/cardComponent.jsx'
+import { withRouter } from 'react-router-dom'
+
+const theme = createMuiTheme(
+    {
+        overrides: {
+            MuiInputBase: {
+                root: {
+                    height: "76%",
+                    width: "82%"
+                },
+                input:{
+                    height: "1.2em",
+                    marginTop: "-4%"
+                }
+            },
+            MuiOutlinedInput:{
+                input:{
+                    padding: "18.5px 15px"
+                }
+            },
+            MuiFormControl:{
+                root:{
+                    display: "flex",
+                    justifycontent: "center",
+                    alignitems: "center"
+                }
+            },
+            MuiFormLabel:{
+                root:{
+                    fontSize: "small",
+                    lineHeight: "0"
+                }
+            }
+        }
+    }
+)
+class RegistrationComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -109,21 +146,42 @@ export default class RegistrationComponent extends Component {
     handleLogin = () => {
         this.props.props.history.push('/login')
     }
+    handleClick=()=>{
+        this.props.props.history.push('/card')
+    }
 
     render() {
+        var card1 = "", card2 = "", status = "", color = ""
+        {
+            if (this.props.location.state !== undefined) {
+                if (this.props.location.state === 1) {
+                    card1 = this.props.location.state
+                    status = "Selected"
+                    color = "orange"
+                }
+                else {
+                    card2 = this.props.location.state
+                    status = "Selected"
+                    color = "orange"
+                }
+            }
+        }
+        // console.log(card1,"state",card2);
         return (
             <div>
                 <form className='register'>
+                <MuiThemeProvider theme={theme}>
                     <Card className='registerCard'>
-                        <div style={{ marginLeft: "152px" }}>
+                        <div className='div'>
                             <b>
                                 <h4>
-                                    <span style={{ color: "LightGreen" }}>Create New Account</span>
+                                    <span style={{ color: "blue" }}>
+                                        <blockquote>Create Account</blockquote></span>
                                 </h4>
                             </b>
                         </div>
 
-                        <div className='input'>
+                        <div className='input1'>
                             <TextField
                                 id="outlined-FirstName-input"
                                 label="Firstname*"
@@ -135,8 +193,6 @@ export default class RegistrationComponent extends Component {
                                 onChange={this.handleChangeFirstName}
                                 value={this.state.FirstName}
                             />
-                        </div>
-                        <div className='input'>
                             <TextField
                                 id="outlined-LastName-input"
                                 label="Lastname*"
@@ -161,8 +217,6 @@ export default class RegistrationComponent extends Component {
                                 onChange={this.handleChangeEmail}
                                 value={this.state.Email}
                             />
-                        </div>
-                        <div className='input'>
                             <TextField
                                 id="outlined-Password-input"
                                 label="Password*"
@@ -182,8 +236,23 @@ export default class RegistrationComponent extends Component {
                             <Button variant="contained" color="primary" onClick={this.handleLogin}>
                                 SignIn
                             </Button>
+                           
+                        </div>
+                        <div>
+                        <CardComponent cardProps={true}
+                            card1={card1}
+                            card2={card2}
+                            status={status}
+                            color={color}
+                        >
+                        </CardComponent>
+                    </div>
+                    <div className='plan'>
+                        Do You Want To Switch The Plan Or Look At The Offer..
+                          <h6 style={{color:"blue"}} onClick={()=>this.handleClick()}>Click here</h6>
                         </div>
                     </Card>
+                    </MuiThemeProvider>
                 </form>
                 <Snackbar
                     anchorOrigin={{
@@ -203,6 +272,7 @@ export default class RegistrationComponent extends Component {
                             <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
                                 UNDO
                         </Button>
+                            <CardComponent />
                         </div>
                     ]}
                 />
@@ -210,3 +280,4 @@ export default class RegistrationComponent extends Component {
         )
     }
 }
+export default withRouter(RegistrationComponent)
