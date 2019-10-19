@@ -70,6 +70,7 @@ export default class LoginComponent extends React.Component {
 
     }
 
+    
 
 
     //getting the responce from the facebook login.

@@ -17,6 +17,10 @@ const theme = createMuiTheme({
             paper: {
                 top: "10.5%",
                 marginLeft: "-14px",
+                '@media (max-width:414px)':{
+                    width:"95%",
+                    backgroundColor:"dimgrey"
+                }
                
             },
             paperAnchorDockedLeft:{
@@ -98,8 +102,8 @@ this.props.history.push('/label',value);
     render() {
         return (
             <MuiThemeProvider theme={theme} >
-            <div>
-            <Drawer variant="persistent" overflow="auto" open={this.props.menuSelect}>
+            <div className='drawer-bar'>
+            <Drawer variant="persistent" overflow="auto" open={this.props.menuSelect} className='drawerr' >
                 <MenuItem id = "note" onClick={this.handleClickNotes}>
                 <MailIcon/> Notes
                 </MenuItem>

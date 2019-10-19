@@ -12,6 +12,7 @@ class Dashboard extends Component {
             list: false,
             Search: ""
         }
+        this.createNotesRef = React.createRef()
     }
     handleList = async (value) => {
         await this.setState({
@@ -21,21 +22,26 @@ class Dashboard extends Component {
 
     }
     handleSearch = async (value) => {
-      await  this.setState({
+        await this.setState({
             Search: value
         })
+    }
+    handleCreateNote = (value) => {
+        console.log("value of create notes props is ", value);
+        this.createNotesRef.current.DisplayNotes(value)
     }
     render() {
         return (
             <div >
                 <div><DashBoardComponent listview={this.handleList}
                     searchPropsToGetNotes={this.handleSearch} /></div>
-                <div><CreateNoteComponent></CreateNoteComponent></div>
+                <div><CreateNoteComponent createNoteProps={this.handleCreateNote}></CreateNoteComponent></div>
                 <div className='notes-alignment'><PinComponent list={this.state.list} /></div>
                 <div className='notes-alignment'>
                     <GetAllNotesComponent props={this.props}
                         list={this.state.list}
                         searchProps={this.state.Search}
+                        ref={this.createNotesRef}
                     />
                 </div>
 

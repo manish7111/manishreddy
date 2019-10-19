@@ -161,7 +161,8 @@ class DashBoardComponent extends Component {
         })
     }
    async onSetting(){
-     
+     let date=new Date();
+     console.log("date",date)
    messaging.requestPermission().then( function(){
         console.log("have permission");
      messaging.getToken().then(function(token){

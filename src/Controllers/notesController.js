@@ -357,3 +357,23 @@ export  async function imageUpload(data,id) {
 
     }
 }
+export async function DragAndDrop(dragId,dropId) {
+    console.log("data of drag and drop",dragId,dropId )
+    var headers = {
+        "Content-Type": "application/json"
+    }  
+    
+    try {
+        return await axios.post('https://localhost:44351/api/DnD',  { headers: headers },{params:{'dragId':dragId,'dropId':dropId}})
+            .then(response => {
+                console.log('response data----->>>', response);
+                return response
+            })
+
+    }
+    catch (error) {
+        console.log("error in usectr--" + error)
+        return Promise.resolve(false)
+
+    }
+}

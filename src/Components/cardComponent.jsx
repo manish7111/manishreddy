@@ -32,7 +32,8 @@ class CardComponent extends Component {
             cart: '',
             pId: '',
             name: '',
-            id: ''
+            id: '',
+            service:''
         }
     }
     
@@ -67,9 +68,24 @@ class CardComponent extends Component {
     handleCardClick=(id)=>{
         this.props.props.history.push('/register',id)
     }
-   
+   handleAdavance=()=>{
+       this.setState({
+           service:this.props.service
+       })
+       console.log("Advance Card set state",this.state.service); 
+      
+   }
+   handleBasic=()=>{
+    this.setState({
+        service:this.props.service
+    })
+    console.log("Basic Card set state",this.state.service); 
+    
+}
       
     render() {
+        localStorage.setItem('Service',this.props.service);
+        localStorage.getItem('Service');
         return (
             this.props.cardProps?
              <div className="service-card">
@@ -104,7 +120,7 @@ class CardComponent extends Component {
                                 {this.props.card1===1?(
                                 <div className="add-cart" ><h5>{this.props.status}</h5></div>
                                 ):
-                                <div className="add-cart" ><h5>Add To Cart</h5></div>}
+                                <div className="add-cart" onClick={this.handleAdavance}><h5>Add To Cart</h5></div>}
                             </Card>
                         </MuiThemeProvider>
 
@@ -135,7 +151,7 @@ class CardComponent extends Component {
                                 {this.props.card2===2?(
                                     <div className="add-cart" ><h5>{this.props.status}</h5></div>
                                     ):
-                                    <div className="add-cart" ><h5>Add To Cart</h5></div>}
+                                    <div className="add-cart" onClick={this.handleBasic}><h5>Add To Cart</h5></div>}
                             </Card>
                         </MuiThemeProvider>
                     </div>}
@@ -144,7 +160,7 @@ class CardComponent extends Component {
             <div className="service-card-main">
                 <div>
                     <MuiThemeProvider theme={theme}>
-                        <AppBar style={{ height: "65px" }} position="static" color="primary">
+                        <AppBar style={{ height: "65px" ,    width: "107%"}} position="static" color="primary">
                             <h2 className='fundooNotes'>Fundoo Notes</h2>
                             
                         </AppBar>

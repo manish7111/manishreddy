@@ -55,7 +55,8 @@ class RegistrationComponent extends Component {
             FirstName: "",
             LastName: "",
             Email: "",
-            Password: ""
+            Password: "",
+            Service:""
         }
     }
 
@@ -122,7 +123,8 @@ class RegistrationComponent extends Component {
                 FirstName: this.state.FirstName,
                 LastName: this.state.LastName,
                 Email: this.state.Email,
-                Password: this.state.Password
+                Password: this.state.Password,
+                Service:this.state.Service
             }
             userRegister(data)
                 .then((response) => {
@@ -151,18 +153,21 @@ class RegistrationComponent extends Component {
     }
 
     render() {
-        var card1 = "", card2 = "", status = "", color = ""
+        this.state.Service=localStorage.getItem('Service')
+        var card1 = "", card2 = "", status = "", color = "",service=""
         {
             if (this.props.location.state !== undefined) {
                 if (this.props.location.state === 1) {
                     card1 = this.props.location.state
                     status = "Selected"
                     color = "orange"
+                    service="Advance"
                 }
                 else {
                     card2 = this.props.location.state
                     status = "Selected"
                     color = "orange"
+                    service="Basic"
                 }
             }
         }
@@ -244,6 +249,7 @@ class RegistrationComponent extends Component {
                             card2={card2}
                             status={status}
                             color={color}
+                            service={service}
                         >
                         </CardComponent>
                     </div>

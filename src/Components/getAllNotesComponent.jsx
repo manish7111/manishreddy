@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, InputBase, Dialog, Button, Chip, DialogTitle, DialogActions } from '@material-ui/core';
+import { Card, InputBase, Dialog, Button, Chip, DialogTitle, DialogActions, Grid } from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
@@ -7,7 +7,7 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ColorPalletComponent from './colorPalletComponent'
-import { getAllNotes, deleteNotes, archiveNotes, updateNotes, unReminder, removeCollab, pinNotes, imageUpload } from '../Controllers/notesController.js'
+import { getAllNotes, deleteNotes, archiveNotes, updateNotes, unReminder, removeCollab, pinNotes, imageUpload, DragAndDrop } from '../Controllers/notesController.js'
 import RemainderComponent from './remainderComponent';
 import ColloborartorComponent from './colloborartorComponent'
 import pin from '../Assests/pin.svg'
@@ -15,12 +15,22 @@ import MoreIconComponent from '../Components/moreIconComponent'
 import { Alarm } from '@material-ui/icons'
 import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import ImageComponent from '../Components/imageComponent';
+import { askForPermissioToReceiveNotifications } from '../Services/userServices';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function Search(searchValue) {
     return function (value) {
         return value.Title.includes(searchValue) || value.Description.includes(searchValue)
     }
 }
+const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+};
+
 export default class GetAllNotesComponent extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +50,9 @@ export default class GetAllNotesComponent extends Component {
             ReceiverEmail: "",
             collabId: "",
             SenderEmail: "",
-            Label: ""
+            Label: "",
+            drag: "",
+            drop: ""
 
         }
     }
@@ -192,8 +204,8 @@ export default class GetAllNotesComponent extends Component {
                 });
             });
     }
-    handleUpdate = async (noteId, Title, Desc, Color, value, SenderEmail, ReceiverEmail, Label,Image) => {
-        console.log("key of Update notes id", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label,Image);
+    handleUpdate = async (noteId, Title, Desc, Color, value, SenderEmail, ReceiverEmail, Label, Image) => {
+        console.log("key of Update notes id", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label, Image);
         this.setState({
             open: !this.state.open,
             Id: noteId,
@@ -216,15 +228,15 @@ export default class GetAllNotesComponent extends Component {
             ReceiverEmail: this.state.ReceiverEmail,
             SenderEmail: this.state.SenderEmail,
             Label: this.state.Label,
-            Image:this.state.Image
+            Image: this.state.Image
         }
 
         console.log("update id's", data.Email, data.Id, data.Color);
         await this.updateNote(data)
     }
 
-    handleColor = async (Color, noteId, Title, Desc, value, SenderEmail, ReceiverEmail, Label,Image) => {
-        console.log("dialog color change==>  state3 check", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label,Image);
+    handleColor = async (Color, noteId, Title, Desc, value, SenderEmail, ReceiverEmail, Label, Image) => {
+        console.log("dialog color change==>  state3 check", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label, Image);
         this.setState({
             Color: Color,
         })
@@ -240,14 +252,14 @@ export default class GetAllNotesComponent extends Component {
             ReceiverEmail: ReceiverEmail,
             SenderEmail: SenderEmail,
             Label: Label,
-            Image:Image
+            Image: Image
         }
         console.log("color data before updation", data);
         await this.updateNote(data)
     }
 
-    handleReminder = (value, noteId, Title, Desc, Color, SenderEmail, ReceiverEmail, Label,Image) => {
-        console.log("key of Reminder notes id", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label,Image);
+    handleReminder = (value, noteId, Title, Desc, Color, SenderEmail, ReceiverEmail, Label, Image) => {
+        console.log("key of Reminder notes id", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label, Image);
 
 
         this.setState({
@@ -263,12 +275,17 @@ export default class GetAllNotesComponent extends Component {
             ReceiverEmail: ReceiverEmail,
             SenderEmail: SenderEmail,
             Label: Label,
-            Image:Image
+            Image: Image
 
         }
 
         console.log("REminder id's", data.Reminder, data.Id, data.Color, data.Title, data.Description);
         this.updateNote(data)
+        askForPermissioToReceiveNotifications(data.Reminder, data.Title, data.Description)
+        // .then((response)=>{
+        //     console.log(data.Reminder,data.Title,data.Description);
+        //     console.log("data from frontend------>>>>", response);
+        // })
 
     }
 
@@ -299,8 +316,8 @@ export default class GetAllNotesComponent extends Component {
             });
 
     }
-    handleCollab = (ReceiverEmail, noteId, Title, Desc, Color, value, SenderEmail, Label,Image) => {
-        console.log("key of Collab notes id 1,2,3,4,5,6,", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label,Image);
+    handleCollab = (ReceiverEmail, noteId, Title, Desc, Color, value, SenderEmail, Label, Image) => {
+        console.log("key of Collab notes id 1,2,3,4,5,6,", noteId, Title, Desc, value, Color, ReceiverEmail, SenderEmail, Label, Image);
 
 
         this.setState({
@@ -317,7 +334,7 @@ export default class GetAllNotesComponent extends Component {
             ReceiverEmail: ReceiverEmail,
             SenderEmail: this.state.Email,
             Label: Label,
-            Image:Image
+            Image: Image
         }
         console.log("data ---------------##!@@##$@$", data.Id, data.Email, data.ReceiverEmail, data.Title, data.Description, data.Color, data.SenderEmail);
 
@@ -415,10 +432,62 @@ export default class GetAllNotesComponent extends Component {
         console.log("forma data  ", formData);
         await imageUpload(formData, noteId).then((response) => {
             console.log("response data in uploading pic ", response)
-           
+
         })
     }
+    onDragEnd = async (result) => {
+        console.log("result of drag is ", result);
 
+        const { source } = result;
+        const { destination } = result;
+        console.log("source and destination", source, destination);
+
+        // dropped outside the list
+        if (!destination) {
+            return;
+        }
+
+        if (source.droppableId === destination.draggableId) {
+            const items = reorder(
+                this.state.notes(source.droppableId),
+                source.index,
+                destination.index
+            );
+
+
+        }
+        var data = {
+            drag: this.state.notes[source.index],
+            drop: this.state.notes[destination.index]
+        }
+        console.log("data of DND is ", data.drag.Id, data.drop.Id)
+        await DragAndDrop(data.drag.Id, data.drop.Id)
+            .then((response) => {
+                console.log("DND response====>", response);
+                this.getNotes()
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Get Successfully!!"
+                });
+
+
+            })
+            .catch((err) => {
+                console.log("error occured while Getting----------", err);
+                this.setState({
+                    openSnackBar: true,
+                    snackBarMessage: "Error occured while Getting!!"
+                });
+            });
+
+    };
+    DisplayNotes = (value) => {
+        console.log("value in get all notes ", value);
+        this.setState({
+            notes:[...this.state.notes,value]
+        })
+
+    }
     render() {
         console.log("props from more icon is ------", this.props.moreToGetNotesProps);
 
@@ -427,7 +496,8 @@ export default class GetAllNotesComponent extends Component {
         console.log(datas);
         this.state.Email = datas;
 
-        var get = this.state.notes.filter(Search(this.props.searchProps)).map(key => {
+
+        var get = this.state.notes.filter(Search(this.props.searchProps)).map((key, index) => {
 
             console.log("get" + get);
 
@@ -436,139 +506,153 @@ export default class GetAllNotesComponent extends Component {
                 (((key.IsArchive === false)
                     && (key.IsTrash === false) && (key.IsPin === false))
                     &&
-                    <div className='get-notes' id={list}>
-                        <Card className='notes-card cardDesc' style={{ backgroundColor: key.Color }} id={list}  >
-                            <div className='notes-align'>
-                            {(key.Image != null) ?
-                                <div className='image-upload'>
-                                    <img src={key.Image} style={{height:"25%",width:"27.15%"}}/>
-                                </div> : (null)}
-                                <div className='notes-align-div'>
-                                    <div className='pin'>
-                                        <b>
-                                            <InputBase
-                                                className="title"
-                                                multiline
-                                                placeholder="Title"
-                                                id="Title"
-                                                value={key.Title}
-                                                onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label)}
-                                            />
-                                        </b>
-                                        <img src={pin} alt="pin" onClick={() => this.handlePin(key.Id)} />
-                                    </div>
-                                    <InputBase
-                                        multiline
-                                        className="title"
-                                        placeholder="Description"
-                                        id="Description"
-                                        value={key.Description}
-                                        onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label)}
-                                    />
+
+                    <div className='get-notes' id={list} >
+                        <Draggable
+                            key={key.Id}
+                            draggableId={key.Id}
+                            index={index}>
+                            {(provided, snapshot) => (
+                                <div ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+
+                                >
+                                    <Card className='notes-card cardDesc' id={list} >
+
+                                        <div className='notes-align' style={{ backgroundColor: key.Color }}>
+                                            {(key.Image != null) ?
+                                                <div className='image-upload'>
+                                                    <img src={key.Image} style={{ height: "25%", width: "27.15%" }} />
+                                                </div> : (null)}
+                                            <div className='notes-align-div'>
+                                                <div className='pin'>
+                                                    <b>
+                                                        <InputBase
+                                                            className="title"
+                                                            multiline
+                                                            placeholder="Title"
+                                                            id="Title"
+                                                            value={key.Title}
+                                                            onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label)}
+                                                        />
+                                                    </b>
+                                                    <img src={pin} alt="pin" onClick={() => this.handlePin(key.Id)} />
+                                                </div>
+                                                <InputBase
+                                                    multiline
+                                                    className="title"
+                                                    placeholder="Description"
+                                                    id="Description"
+                                                    value={key.Description}
+                                                    onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label)}
+                                                />
+                                            </div>
+
+                                            <div>
+                                                {(key.Reminder !== null) ?
+                                                    <div className='chip-reminder'>
+                                                        <Chip
+                                                            icon={<Alarm />}
+                                                            label={key.Reminder}
+                                                            onDelete={() => this.handleReminderDelete(key.Id)}
+                                                            color="black"
+                                                            variant="outlined"
+                                                        /></div> : <div className='empty-div'></div>}
+                                            </div>
+                                            {(key.SenderEmail === this.state.Email) ?
+                                                (key.ReceiverEmail !== null) ?
+                                                    <div className='collab'>
+                                                        <Chip
+                                                            icon={<PersonSharpIcon />}
+                                                            label={key.ReceiverEmail}
+                                                            onDelete={() => this.handleCollaboratorDelete(key.Id)}
+                                                            color="black"
+                                                            variant="outlined"
+                                                        /></div> : <div className='empty-div'></div>
+                                                :
+                                                (key.SenderEmail !== null) ?
+                                                    <div className='collab'>
+                                                        <Chip
+                                                            icon={<PersonSharpIcon />}
+                                                            label={key.SenderEmail}
+                                                            onDelete={() => this.handleCollaboratorDelete(key.Id)}
+                                                            color="black"
+                                                            variant="outlined"
+                                                        /></div> : <div className='empty-div'>
+                                                    </div>}
+
+                                            {(key.Label !== null) ?
+                                                <div className='label-chip'>
+                                                    <Chip
+                                                        label={key.Label}
+                                                        onDelete={() => this.handleDeleteLabel(key.Id)}
+                                                        color="black"
+                                                        variant="outlined"
+                                                    /></div> : <div className='empty-div'></div>}
+
+                                            <div className='created-notes-icon'>
+                                                <RemainderComponent
+
+                                                    reminderProps={this.handleReminder}
+                                                    noteId={key.Id}
+                                                    Title={key.Title}
+                                                    Desc={key.Description}
+                                                    Color={key.Color}
+                                                    SenderEmail={key.SenderEmail}
+                                                    ReceiverEmail={key.ReceiverEmail}
+                                                    Label={key.Label}
+                                                    Image={key.Image}
+                                                />
+                                                <ColloborartorComponent collabProps={this.handleCollab}
+                                                    noteId={key.Id}
+                                                    Title={key.Title}
+                                                    Desc={key.Description}
+                                                    Color={key.Color}
+                                                    Reminder={key.Reminder}
+                                                    SenderEmail={key.SenderEmail}
+                                                    ReceiverEmail={key.ReceiverEmail}
+                                                    Label={key.Label}
+                                                    Image={key.Image}
+                                                />
+                                                <ColorPalletComponent
+                                                    colorProps={this.handleColor}
+                                                    noteId={key.Id}
+                                                    Title={key.Title}
+                                                    Desc={key.Description}
+                                                    Reminder={key.Reminder}
+                                                    SenderEmail={key.SenderEmail}
+                                                    ReceiverEmail={key.ReceiverEmail}
+                                                    Label={key.Label}
+                                                    Image={key.Image}
+                                                />
+                                                {/*<ImageOutlinedIcon/>*/}
+                                                <ImageComponent
+                                                    imageProps={this.handleImage}
+                                                    noteId={key.Id}
+
+                                                ></ImageComponent>
+                                                <ArchiveOutlinedIcon onClick={() => this.handleArchiveNotes(key.Id)} />
+                                                <DeleteIcon onClick={() => this.handleDeleteNotes(key.Id)} />
+                                                <MoreIconComponent
+                                                    moreToGetNotesProps={this.handleLabelUpdate}
+                                                    noteId={key.Id}
+                                                    Title={key.Title}
+                                                    Desc={key.Description}
+                                                    Color={key.Color}
+                                                    Reminder={key.Reminder}
+                                                    SenderEmail={this.state.Email}
+                                                    ReceiverEmail={key.ReceiverEmail}
+
+
+                                                />
+
+                                            </div>
+                                        </div>
+                                    </Card>
                                 </div>
-
-                                <div>
-                                    {(key.Reminder !== null) ?
-                                        <div className='chip-reminder'>
-                                            <Chip
-                                                icon={<Alarm />}
-                                                label={key.Reminder}
-                                                onDelete={() => this.handleReminderDelete(key.Id)}
-                                                color="black"
-                                                variant="outlined"
-                                            /></div> : <div className='empty-div'></div>}
-                                </div>
-                                {(key.SenderEmail === this.state.Email) ?
-                                    (key.ReceiverEmail !== null) ?
-                                        <div className='collab'>
-                                            <Chip
-                                                icon={<PersonSharpIcon />}
-                                                label={key.ReceiverEmail}
-                                                onDelete={() => this.handleCollaboratorDelete(key.Id)}
-                                                color="black"
-                                                variant="outlined"
-                                            /></div> : <div className='empty-div'></div>
-                                    :
-                                    (key.SenderEmail !== null) ?
-                                        <div className='collab'>
-                                            <Chip
-                                                icon={<PersonSharpIcon />}
-                                                label={key.SenderEmail}
-                                                onDelete={() => this.handleCollaboratorDelete(key.Id)}
-                                                color="black"
-                                                variant="outlined"
-                                            /></div> : <div className='empty-div'>
-                                        </div>}
-
-                                {(key.Label !== null) ?
-                                    <div className='label-chip'>
-                                        <Chip
-                                            label={key.Label}
-                                            onDelete={() => this.handleDeleteLabel(key.Id)}
-                                            color="black"
-                                            variant="outlined"
-                                        /></div> : <div className='empty-div'></div>}
-                                
-                                <div className='created-notes-icon '>
-                                    <RemainderComponent
-
-                                        reminderProps={this.handleReminder}
-                                        noteId={key.Id}
-                                        Title={key.Title}
-                                        Desc={key.Description}
-                                        Color={key.Color}
-                                        SenderEmail={key.SenderEmail}
-                                        ReceiverEmail={key.ReceiverEmail}
-                                        Label={key.Label}
-                                        Image={key.Image}
-                                    />
-                                    <ColloborartorComponent collabProps={this.handleCollab}
-                                        noteId={key.Id}
-                                        Title={key.Title}
-                                        Desc={key.Description}
-                                        Color={key.Color}
-                                        Reminder={key.Reminder}
-                                        SenderEmail={key.SenderEmail}
-                                        ReceiverEmail={key.ReceiverEmail}
-                                        Label={key.Label}
-                                        Image={key.Image}
-                                    />
-                                    <ColorPalletComponent
-                                        colorProps={this.handleColor}
-                                        noteId={key.Id}
-                                        Title={key.Title}
-                                        Desc={key.Description}
-                                        Reminder={key.Reminder}
-                                        SenderEmail={key.SenderEmail}
-                                        ReceiverEmail={key.ReceiverEmail}
-                                        Label={key.Label}
-                                        Image={key.Image}
-                                    />
-                                    {/*<ImageOutlinedIcon/>*/}
-                                    <ImageComponent
-                                        imageProps={this.handleImage}
-                                        noteId={key.Id}
-
-                                    ></ImageComponent>
-                                    <ArchiveOutlinedIcon onClick={() => this.handleArchiveNotes(key.Id)} />
-                                    <DeleteIcon onClick={() => this.handleDeleteNotes(key.Id)} />
-                                    <MoreIconComponent
-                                        moreToGetNotesProps={this.handleLabelUpdate}
-                                        noteId={key.Id}
-                                        Title={key.Title}
-                                        Desc={key.Description}
-                                        Color={key.Color}
-                                        Reminder={key.Reminder}
-                                        SenderEmail={this.state.Email}
-                                        ReceiverEmail={key.ReceiverEmail}
-
-
-                                    />
-
-                                </div>
-                            </div>
-                        </Card>
-
+                            )}
+                        </Draggable>
 
                         <Dialog open={this.state.open} onClose={this.handleClose}>
                             <Card className='notes-card' style={{ backgroundColor: this.state.Color }} >
@@ -627,7 +711,7 @@ export default class GetAllNotesComponent extends Component {
                                                 Email={this.state.Email}
 
                                             />
-                                            <Button variant="contained" onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label,key.Image)}>Close</Button>
+                                            <Button variant="contained" onClick={() => this.handleUpdate(key.Id, key.Title, key.Description, key.Color, key.Reminder, key.SenderEmail, key.ReceiverEmail, key.Label, key.Image)}>Close</Button>
                                         </div>
                                     </DialogActions>
                                 </div>
@@ -645,7 +729,15 @@ export default class GetAllNotesComponent extends Component {
         })
         return (
             <div className='notes-list'>
-                {get}
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId='droppable'>
+                        {(provided, snapshot) => (
+                            <div className='get-note2' ref={provided.innerRef}>
+                                {get}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
         )
     }

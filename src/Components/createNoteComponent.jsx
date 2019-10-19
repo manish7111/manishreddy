@@ -9,7 +9,7 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ColorPalletComponent from '../Components/colorPalletComponent'
-import { addNotes } from '../Controllers/notesController.js'
+import { addNotes, getAllNotes } from '../Controllers/notesController.js'
 
 class CreateNoteComponent extends Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class CreateNoteComponent extends Component {
             openCard: true,
             Title: "",
             Description: "",
-            Color: ""
+            Color: "",
+            newNote:[]
 
         }
 
@@ -42,7 +43,7 @@ class CreateNoteComponent extends Component {
         })
 
     }
-    handleNoteAddClick(event) {
+    handleNoteAddClick=(event)=>{
         console.log("in handle click");
 
         event.preventDefault();
@@ -68,14 +69,14 @@ class CreateNoteComponent extends Component {
             addNotes(data)
                 .then((response) => {
                     console.log("add response====>", response);
-
                     this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "notes added Successfully!!"
-                    });
-                    this.props.history.push("/dashboard");
-
-                })
+                        newNote:response.config.data
+                    })
+                    console.log("response after setstate",this.state.newNote);
+                    // this.props.history.push("/dashboard");
+                    this.props.createNoteProps(this.state.newNote);
+            })
+            
                 .catch((err) => {
                     console.log("error in adding notes----------", err);
                     this.setState({
@@ -83,6 +84,7 @@ class CreateNoteComponent extends Component {
                         snackBarMessage: "notes add Unsuccessful!!"
                     });
                 });
+                
         }
     };
     handleColor =async (value) => {

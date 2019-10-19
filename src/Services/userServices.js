@@ -5,7 +5,7 @@
  *  @version        : v0.1
  *  @since          : 12-09-2019
  *****************************************************************************************************/
-
+import firebase from 'firebase';
 //calling axios function to connect with backend.
 const axios = require('axios');
 //userRegister is a function while getting the responce from the frontend and helps in mapping the data to backend.
@@ -151,6 +151,58 @@ export async function pushNOtification(){
         console.log("error in usectr--" + error)
         return Promise.resolve(false)
 
+    }
+}
+
+export const askForPermissioToReceiveNotifications = async (userdate, Title, Description) => {
+    try {
+        console.log("userdateuserdateuserdate==>", userdate,Title,Description);
+        const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
+        console.log('token:============>', token);
+        var date = new Date()
+        console.log("date-->0", date);
+        var date1 = new Date(userdate)
+        console.log("date1111-->0", date1);
+        var diff = Math.abs(date1 - date);
+        console.log("diff----->", diff);
+
+        setTimeout( () => {
+            var data = {
+                "notification": {
+                    "title": Title,
+                    "body": Description,
+                    "sound": "default"
+                    // "click_action": "http://localhost:3000/",
+                    // "icon": "http://url-to-an-icon/icon.png"
+                },
+                "to": token
+                // "to": process.env.token
+            }
+         passmessage(data);
+        }, diff);
+       return diff;
+        
+    } catch (error) {
+        console.error("errorrrrrrrrrrrrrrrrrr", error);
+    }
+}
+
+function passmessage(data) {
+    console.log("hiii");
+    
+    try {
+        axios.post('https://fcm.googleapis.com/fcm/send', data, { headers: { 'Authorization': 'key=AAAABWNyTkE:APA91bEgAw38rfTGVP-orFpnH09Q4KMt8azG3GshoRCKdvKiBiMEdiBwLq-p40zMUvM7WYvs4_YZ6A5QrMdDJ-7NvjbQ_dqezYUVABllBFNmIBtSUAuxx45X0_I1v3WZk2G_gGSiHwL5','Content-Type':'application/json' } })
+            .then((res) => {
+                //return res;
+                console.log("res----->", res);
+            })
+            .catch((err) => {
+                console.log("errors==>", err);
+            })
+    } catch (error) {
+        console.log("Error in resetpassword in userservices..");
     }
 }
 

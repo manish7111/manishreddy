@@ -93,7 +93,7 @@ class TrashComponent extends Component {
                 && (key.IsTrash === true))
                 &&
                 <div className='get-trash-notes' >
-                    <Card className='notes-trash-card cardDesc' style={{backgroundColor:key.Color}} key={key.Id}>
+                    <Card className='notes-trash-card cardDesc1' style={{backgroundColor:key.Color}} key={key.Id}>
                         <div className='notes-trash-align'>
                             <b>
                                 <InputBase

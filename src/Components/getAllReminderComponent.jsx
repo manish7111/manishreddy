@@ -93,7 +93,7 @@ class GetAllReminderComponent extends Component {
              (key.Reminder !== null))
                 &&
                 <div className='get-Reminder-note' >
-                    <Card className='notes-trash-card cardDesc' style={{backgroundColor:key.Color}} key={key.Id}>
+                    <Card className='notes-trash-card cardDesc2' style={{backgroundColor:key.Color}} key={key.Id}>
                         <div className='notes-trash-align'>
                             <b>
                                 <InputBase
